@@ -18,6 +18,11 @@ public abstract class Lagune {
     /**
      * @attribute
      */
+    private static Integer MAX_DENSITY;
+
+    /**
+     * @attribute
+     */
     private Point[] grille;
 
     /**
@@ -50,5 +55,12 @@ public abstract class Lagune {
 
     public Integer getForce_courant() {
         return force_courant;
+    }
+
+    public static void setMAX_DENSITY(Integer MAX_DENSITY){
+        Lagune.MAX_DENSITY = MAX_DENSITY;
+    }
+    public static Integer getMAX_DENSITY(){
+        return MAX_DENSITY;
     }
 }
