@@ -28,8 +28,9 @@ public class Predateurs extends Poissons {
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     Class cla = p.getClass();
-
-                    if(cla.equals((Class<? extends Poissons>)){
+                    if(cla == Predateurs.class){
+                        Lagune.grille[Lagune.grille.length] = new Predateurs(numero_poisson, nom_poisson, poids_poisson, age_poisson, position_poisson, vivacite_proie)
+                    
 
                     }
                 }
