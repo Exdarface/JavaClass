@@ -4,10 +4,13 @@ import java.awt.Point;
 
 
 public class Proies extends Poissons {
-    public Proies(Integer numero_poisson, String nom_poisson, float poids_poisson, Integer age_poisson,
-                  Point position_poisson,Integer vivacite_proie) {
+    public Proies() {
+
+        String[] espece = {"Vieille","Anguille","Dauphin","Esturgon","Dorade","Mérou","Loche","Raie","Truite"};
+    }
+    public Proies(double poids_poisson,Point position_poisson,Integer vivacite_proie) {
         // TODO Implement this method
-        super(numero_poisson, nom_poisson, poids_poisson, age_poisson, position_poisson);
+        super(poids_poisson,position_poisson);
         this.vivacite_proie = vivacite_proie;
     }
 
@@ -22,6 +25,16 @@ public class Proies extends Poissons {
     private static Integer PREY_CLONE_TIME;
 
     public static Proies se_reproduit() {
+        if(unite_temps/PREY_CLONE_TIME ==1){
+            for (Case c : Lagune.grille) {
+                for (Poissons p : c.getContenu()) {
+                    Class cla = p.getClass();
+                    if(cla == Proies.class){
+                        c.addContenu(new Proies(p.getPoids_poisson(),p.getPosition_poisson()));
+                    }
+                }
+            }
+        }
     }
     
     @Override

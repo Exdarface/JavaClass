@@ -18,7 +18,7 @@ public class Case extends Lagune {
      * @attribute
      * @associates <{String}>
      */
-    private Poissons[] contenu;
+    protected Poissons[] contenu;
 
     /**
      * @attribute
@@ -68,4 +68,8 @@ public class Case extends Lagune {
     public Boolean getIs_passe() {
         return is_passe;
     }
+
+	public void addContenu(Poissons p) {
+        contenu[contenu.length] = p;
+	}
 }

@@ -4,10 +4,9 @@ import java.awt.Point;
 
 
 public class Predateurs extends Poissons {
-    public Predateurs(Integer numero_poisson, String nom_poisson, float poids_poisson, Integer age_poisson,
-                      Point position_poisson,Integer vivacite_proie) {
+    public Predateurs(double poids_poisson,Point position_poisson) {
         // TODO Implement this method
-        super(numero_poisson, nom_poisson, poids_poisson, age_poisson, position_poisson);
+        super(poids_poisson,position_poisson);
     }
 
     /**
@@ -23,15 +22,13 @@ public class Predateurs extends Poissons {
     public static void chasse() {
     }
 
-    public static Predateurs se_reproduit() {
+    public static void se_reproduit() {
         if(unite_temps/PREDATOR_CLONE_TIME ==1){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     Class cla = p.getClass();
                     if(cla == Predateurs.class){
-                        Lagune.grille[Lagune.grille.length] = new Predateurs(numero_poisson, nom_poisson, poids_poisson, age_poisson, position_poisson, vivacite_proie)
-                    
-
+                        c.addContenu(new Predateurs(p.getPoids_poisson(),p.getPosition_poisson()));
                     }
                 }
             }

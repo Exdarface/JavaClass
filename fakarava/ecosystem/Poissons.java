@@ -11,12 +11,17 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
+    protected Integer nbr_poissons = 0;
+
+    /**
+     * @attribute
+     */
     private String nom_poisson;
 
     /**
      * @attribute
      */
-    private float poids_poisson;
+    private double poids_poisson;
 
     /**
      * @attribute
@@ -33,13 +38,13 @@ public abstract class Poissons implements Clock {
      */
     protected static Integer unite_temps = 0;
 
-    public Poissons(Integer numero_poisson, String nom_poisson, float poids_poisson, Integer age_poisson,
-                    Point position_poisson) {
-        this.numero_poisson = numero_poisson;
-        this.nom_poisson = nom_poisson;
+    public Poissons(double poids_poisson,Point position_poisson) {
+        
+        this.numero_poisson = nbr_poissons+1;
         this.poids_poisson = poids_poisson;
-        this.age_poisson = age_poisson;
+        this.age_poisson = 1;
         this.position_poisson = position_poisson;
+        nbr_poissons++;
     }
 
     public Integer getNumero_poisson() {
@@ -50,11 +55,11 @@ public abstract class Poissons implements Clock {
         return nom_poisson;
     }
 
-    public void setPoids_poisson(float poids_poisson) {
+    public void setPoids_poisson(double poids_poisson) {
         this.poids_poisson = poids_poisson;
     }
 
-    public float getPoids_poisson() {
+    public double getPoids_poisson() {
         return poids_poisson;
     }
 
@@ -80,7 +85,7 @@ public abstract class Poissons implements Clock {
         unite_temps++;
     }
     public String toString(){
-        return this.numero_poisson.toString()+","+this.nom_poisson+","+Float.toString(this.poids_poisson)+","+
+        return this.numero_poisson.toString()+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
         this.age_poisson.toString()+","+this.position_poisson.toString()+"\n";
     }
 }
