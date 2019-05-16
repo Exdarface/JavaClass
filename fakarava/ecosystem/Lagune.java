@@ -1,11 +1,16 @@
 package fakarava.ecosystem;
 
+//TODO : COMMENTARY
 public abstract class Lagune {
     /**
      * @attribute
      */
     protected static Integer N;
 
+    /**
+     * @attribute
+     */
+    protected static int nb_passe;
     /**
      * @attribute
      */
@@ -24,7 +29,26 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    private Integer force_courant;
+    private Integer force_courant= MAX_CURRENT_STRENGTH/nb_passe;
+
+    //Méthodes d'Instances :
+
+    public void setForce_courant(Integer force_courant) {
+        this.force_courant = force_courant;
+    }
+
+    public Integer getForce_courant() {
+        return force_courant;
+    }
+
+    //Méthodes de classe : 
+
+    public static void setMAX_DENSITY(Integer MAX_DENSITY){
+        Lagune.MAX_DENSITY = MAX_DENSITY;
+    }
+    public static Integer getMAX_DENSITY(){
+        return MAX_DENSITY;
+    }
 
     public static void creer_grille() {
         int k = -1;
@@ -53,18 +77,4 @@ public abstract class Lagune {
         return MAX_CURRENT_STRENGTH;
     }
 
-    public void setForce_courant(Integer force_courant) {
-        this.force_courant = force_courant;
-    }
-
-    public Integer getForce_courant() {
-        return force_courant;
-    }
-
-    public static void setMAX_DENSITY(Integer MAX_DENSITY){
-        Lagune.MAX_DENSITY = MAX_DENSITY;
-    }
-    public static Integer getMAX_DENSITY(){
-        return MAX_DENSITY;
-    }
 }

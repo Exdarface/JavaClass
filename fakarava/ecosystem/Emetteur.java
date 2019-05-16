@@ -13,8 +13,10 @@ public class Emetteur extends Plongeurs {
     private String description_predateur;
 
     public static Emetteur add_emetteur() {
+        // TODO : Finir la méthode
     }
     @Override
     public String toString(){
+        // TODO : Finir la méthode
     }
 }

@@ -22,9 +22,11 @@ public class Plongeurs {
     private String nom;
 
     public void se_presenter() {
+        // TODO : Finir la méthode
     }
 
     public void remplir_log() {
+        // TODO : Finir la méthode
     }
 
     public String getLabo() {
@@ -47,5 +49,6 @@ public class Plongeurs {
         return nom;
     }
     public String toString(){
+        // TODO : Finir la méthode
     }
 }

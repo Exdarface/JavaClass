@@ -20,8 +20,10 @@ public class Camera extends Plongeurs {
     private String description_chasse;
 
     public static Camera add_camera() {
+        // TODO : Finir la méthode
     }
     @Override
     public String toString(){
+        // TODO : Finir la méthode
     }
 }

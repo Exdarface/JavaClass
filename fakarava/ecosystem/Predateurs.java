@@ -4,10 +4,8 @@ import java.awt.Point;
 
 
 public class Predateurs extends Poissons {
-    public Predateurs(double poids_poisson,Point position_poisson) {
-        // TODO Implement this method
-        super(poids_poisson,position_poisson);
-    }
+
+    
 
     /**
      * @attribute
@@ -19,24 +17,40 @@ public class Predateurs extends Poissons {
      */
     private static Integer BITE_FACTOR;
 
+
     public static void chasse() {
+        // TODO : Finir la méthode
+
     }
+
+    // Constructeurs :
+
+    public Predateurs(double poids_poisson,Point position_poisson) {
+        super(poids_poisson,position_poisson);
+        String[] espece = {"Requin-Tigre","Requin-Marteau","Requin-Bouledogue","Requin-taureau","Requin Blanc"};
+        this.setNom_poisson(espece[rn.nextInt(5)]);
+    }
+
+    //Méthodes d'Instances : 
+
+    @Override
+    public String toString() {
+        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
+            this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
+    }
+
+    //Methodes de classe :
 
     public static void se_reproduit() {
         if(unite_temps/PREDATOR_CLONE_TIME ==1){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
-                    Class cla = p.getClass();
-                    if(cla == Predateurs.class){
+                    if(p.getClass() == Predateurs.class){
                         c.addContenu(new Predateurs(p.getPoids_poisson(),p.getPosition_poisson()));
                     }
                 }
             }
         }
-    }
-
-    @Override
-    public String toString() {
     }
 
     public static void setPREDATOR_CLONE_TIME(Integer PREDATOR_CLONE_TIME) {
@@ -54,4 +68,13 @@ public class Predateurs extends Poissons {
     public static Integer getBITE_FACTOR() {
         return BITE_FACTOR;
     }
+
+    // Méthodes implémentées :
+
+    @Override
+    public void ticktock() {
+        // Ne fait rien, mais import obligatoire
+    }
+
+    
 }

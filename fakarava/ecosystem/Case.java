@@ -3,6 +3,7 @@ package fakarava.ecosystem;
 
 import java.awt.Point;
 
+//TODO : COMMENTARY
 public class Case extends Lagune {
     /**
      * @attribute
@@ -16,33 +17,26 @@ public class Case extends Lagune {
 
     /**
      * @attribute
-     * @associates <{String}>
+     * @associates <{Poissons}>
      */
     protected Poissons[] contenu;
 
     /**
      * @attribute
      */
-    private Boolean is_passe;
+    private Boolean is_passe= false;
 
+    // Constructeurs :
     public Case(int x,int y){
         this.x = x;
         this.y = y;
     }
 
-    public static void get_case(Point p,Case c) {
-        if (p.getX()<N && p.getY()<N) {
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j < N; j++) {
-                    if(p.getX()== i && p.getY()== j){
-                        c = grille[i*N+j];
-                    }
-                }
-            }
-        }        
-    }
+    // Méthodes d'instances : 
 
     public void creer_passe() {
+        this.is_passe = true;
+        nb_passe++;
     }
 
     public Integer getX() {
@@ -71,5 +65,19 @@ public class Case extends Lagune {
 
 	public void addContenu(Poissons p) {
         contenu[contenu.length] = p;
-	}
+    }
+
+    // Méthodes de classe : 
+
+    public static void get_case(Point p,Case c) {
+        if (p.getX()<N && p.getY()<N) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if(p.getX()== i && p.getY()== j){
+                        c = grille[i*N+j];
+                    }
+                }
+            }
+        }        
+    }
 }
