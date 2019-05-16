@@ -77,7 +77,7 @@ public abstract class Poissons implements Clock {
     }
     public void ticktok(){
         this.age_poisson++;
-        this.unite_temps++;
+        unite_temps++;
     }
     public String toString(){
         return this.numero_poisson.toString()+","+this.nom_poisson+","+Float.toString(this.poids_poisson)+","+

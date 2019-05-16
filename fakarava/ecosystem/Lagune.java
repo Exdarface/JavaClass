@@ -1,9 +1,5 @@
 package fakarava.ecosystem;
 
-import java.awt.Point;
-
-import java.util.Collection;
-
 public abstract class Lagune {
     /**
      * @attribute

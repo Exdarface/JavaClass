@@ -25,7 +25,7 @@ public class Case extends Lagune {
      */
     private Boolean is_passe;
 
-    public void Case(int x,int y){
+    public Case(int x,int y){
         this.x = x;
         this.y = y;
     }
