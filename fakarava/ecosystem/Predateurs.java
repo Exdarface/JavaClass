@@ -24,6 +24,17 @@ public class Predateurs extends Poissons {
     }
 
     public static Predateurs se_reproduit() {
+        if(unite_temps/PREDATOR_CLONE_TIME ==1){
+            for (Case c : Lagune.grille) {
+                for (Poissons p : c.getContenu()) {
+                    Class cla = p.getClass();
+
+                    if(cla.equals((Class<? extends Poissons>)){
+
+                    }
+                }
+            }
+        }
     }
 
     @Override

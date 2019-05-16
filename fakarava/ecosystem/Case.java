@@ -18,14 +18,28 @@ public class Case extends Lagune {
      * @attribute
      * @associates <{String}>
      */
-    private String[] contenu;
+    private Poissons[] contenu;
 
     /**
      * @attribute
      */
     private Boolean is_passe;
 
-    public static Case get_case(Point p) {
+    public void Case(int x,int y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public static void get_case(Point p,Case c) {
+        if (p.getX()<N && p.getY()<N) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if(p.getX()== i && p.getY()== j){
+                        c = grille[i*N+j];
+                    }
+                }
+            }
+        }        
     }
 
     public void creer_passe() {
@@ -39,11 +53,11 @@ public class Case extends Lagune {
         return y;
     }
 
-    public void setContenu(String[] contenu) {
+    public void setContenu(Poissons[] contenu) {
         this.contenu = contenu;
     }
 
-    public String[] getContenu() {
+    public Poissons[] getContenu() {
         return contenu;
     }
 

@@ -8,7 +8,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    private static Integer N;
+    protected static Integer N;
 
     /**
      * @attribute
@@ -23,7 +23,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    private Point[] grille;
+    public static Case[] grille;
 
     /**
      * @attribute
@@ -31,6 +31,14 @@ public abstract class Lagune {
     private Integer force_courant;
 
     public static void creer_grille() {
+        int k = -1;
+        for (int i = 0; i < N; i++) {
+            k++;
+            for (int j = 0; j < N; j++) {
+                grille[k] = new Case(i,j);
+                k++;
+            }
+        }
     }
 
     public static void setN(Integer N) {

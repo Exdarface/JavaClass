@@ -28,6 +28,11 @@ public abstract class Poissons implements Clock {
      */
     private Point position_poisson;
 
+    /**
+     * @attribute
+     */
+    protected static Integer unite_temps = 0;
+
     public Poissons(Integer numero_poisson, String nom_poisson, float poids_poisson, Integer age_poisson,
                     Point position_poisson) {
         this.numero_poisson = numero_poisson;
@@ -72,7 +77,10 @@ public abstract class Poissons implements Clock {
     }
     public void ticktok(){
         this.age_poisson++;
+        this.unite_temps++;
     }
     public String toString(){
+        return this.numero_poisson.toString()+","+this.nom_poisson+","+Float.toString(this.poids_poisson)+","+
+        this.age_poisson.toString()+","+this.position_poisson.toString()+"\n";
     }
 }
