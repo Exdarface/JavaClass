@@ -1,8 +1,5 @@
 package fakarava.ecosystem;
 
-import java.awt.Point;
-
-
 public class Camera extends Plongeurs {
     /**
      * @attribute

@@ -1,6 +1,5 @@
 package fakarava.ecosystem;
 
-
 public class Emetteur extends Plongeurs {
     /**
      * @attribute

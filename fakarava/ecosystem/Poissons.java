@@ -1,7 +1,5 @@
 package fakarava.ecosystem;
 
-import java.awt.Point;
-
 //TODO : COMMENTARY
 public abstract class Poissons implements Clock {
     /**

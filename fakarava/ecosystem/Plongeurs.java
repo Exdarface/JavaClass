@@ -21,8 +21,22 @@ public class Plongeurs {
      */
     private String nom;
 
+    // Constructeurs:
+    public Plongeurs(Integer id_plongeur, String nom, String labo, String log) {
+        this.nom = nom;
+        this.labo = labo;
+        this.id_plongeur = id_plongeur;
+        this.log = log;
+    }
+    public Plongeurs(String name, String labo) {
+        this.nom = name;
+        this.labo = labo;
+    }
+
+    // Méthodes d'instance:
     public void se_presenter() {
-        // TODO : Finir la méthode
+        String res = "Plongeur " + this.id_plongeur + " : " + 
+            this.nom + " (" + this.labo + ")";
     }
 
     public void remplir_log() {
@@ -49,6 +63,12 @@ public class Plongeurs {
         return nom;
     }
     public String toString(){
-        // TODO : Finir la méthode
+        return this.nom + " " + this.id_plongeur + " (" + 
+            this.labo + ") " + this.log;
     }
+
+    // Méthodes de classe:
+    public static void Plongeurs(String name, String labo) {
+        Plongeurs(name, labo);
+	}
 }

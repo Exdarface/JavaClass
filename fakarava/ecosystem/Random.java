@@ -1,5 +1,4 @@
 package fakarava.ecosystem;
-
 import static java.lang.Math.*;
 
 public class Random extends java.util.Random {

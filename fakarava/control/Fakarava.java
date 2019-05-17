@@ -20,11 +20,13 @@ public class Fakarava {
     
     public static int createPredator(String name, double weight, int x, int y){
         // TODO : Finir la méthode
+        //Predateurs.Predateurs(weight, Point.Point(x,y));
         return 0;
     }
     
     public static int createPrey(String name, int weight, int x, int y, int dayVivacity){
         // TODO : Finir la méthode
+        //Proies.Proies(weight, Point.Point(x, y), dayVivacity);
         return 0;
     }
     public static int createFishWay(int x, int y){
@@ -33,7 +35,7 @@ public class Fakarava {
     }
 
     public static int createDiver(String name, String labo){
-        // TODO : Finir la méthode
+        fakarava.ecosystem.Plongeurs.Plongeurs(name, labo);
         return 0;
     }
 
