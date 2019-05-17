@@ -41,7 +41,6 @@ public abstract class Poissons implements Clock {
     static Random rn = Random.getARandom();
 
     // Constructeurs : 
-
     public Poissons(double poids_poisson,Point position_poisson) {
         
         this.numero_poisson = nbr_poissons+1;
@@ -52,7 +51,6 @@ public abstract class Poissons implements Clock {
     }
 
     // Méthodes de classe :
-
     public Integer getNumero_poisson() {
         return numero_poisson;
     }
@@ -97,7 +95,6 @@ public abstract class Poissons implements Clock {
     }
 
     // Méthodes implémentées : 
-
     public void ticktok(){
         this.age_poisson++;
     }

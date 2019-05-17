@@ -1,13 +1,22 @@
 package fakarava.ecosystem;
 
 public class Point extends java.awt.Point {
-    public int x;
-    public int y;
+    /**
+     * @attribute
+     */
+    private int x;
+    /**
+     * @attribute
+     */
+    private int y;
 
+    // Constructeurs :
     public Point(int x, int y) {
-        super(x,y);
+        this.x = x;
+        this.y = y;
     }
 
+    // Méthodes d'instance :
     public double getX() {
         return this.x;
     }
@@ -20,4 +29,9 @@ public class Point extends java.awt.Point {
     public String toString() {
         return this.x + ", " + this.y;
     }
+
+    // Méthodes de classe :
+	public static void Point(int x, int y) {
+		Point(x,y);
+	}
 }

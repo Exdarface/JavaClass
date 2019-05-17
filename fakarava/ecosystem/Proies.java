@@ -12,7 +12,6 @@ public class Proies extends Poissons {
      */
     private static Integer PREY_CLONE_TIME;
 
-
     // Constructeurs :
     public Proies(double poids_poisson,Point position_poisson,Integer vivacite_proie) {
         super(poids_poisson,position_poisson);
@@ -21,20 +20,19 @@ public class Proies extends Poissons {
         this.setNom_poisson(espece[rn.nextInt(5)]);
     }
 
-    // Méthodes d'Instances : 
-
-    @Override
-    public String toString() {
-        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
-            this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
-    }
-
+    // Méthodes d'instance : 
     public void setVivacite_proie(Integer vivacite_proie) {
         this.vivacite_proie = vivacite_proie;
     }
 
     public Integer getVivacite_proie() {
         return vivacite_proie;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
+            this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
     }
 
     // Méthodes de classe : 
@@ -59,8 +57,7 @@ public class Proies extends Poissons {
         return PREY_CLONE_TIME;
     }
 
-    //Méthodes implémentées : 
-
+    // Méthodes implémentées : 
     @Override
     public void ticktock() {
         if (unite_temps%2 != 0 && this.getClass() == Proies.class) {

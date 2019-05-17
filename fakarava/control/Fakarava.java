@@ -30,7 +30,7 @@ public class Fakarava {
         return 0;
     }
     public static int createFishWay(int x, int y){
-        // TODO : Finir la méthode
+        Point.Point(x,y);
         return 0;
     }
 
