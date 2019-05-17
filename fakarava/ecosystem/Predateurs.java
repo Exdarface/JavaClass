@@ -1,6 +1,5 @@
 package fakarava.ecosystem;
 
-import java.awt.Point;
 
 
 public class Predateurs extends Poissons {
@@ -20,7 +19,24 @@ public class Predateurs extends Poissons {
 
     public static void chasse() {
         // TODO : Finir la méthode
+        for (Case c : Lagune.grille) {
+            if(c.getIs_passe()){
+                Poissons[] temp = c.getContenu();
+                double poids = 0;
+                int index_predator = 0;
+                for (int i = 0; i < temp.length; i++) {
+                    if(temp[i].getClass() == Predateurs.class && temp[i].getPoids_poisson() > poids){
+                        poids = temp[i].getPoids_poisson();
+                        index_predator = i;
+                    }
+                }
+                int index_prey = 0;
+                int viv = 999;
+                for(int j = 0; j< temp.length; j++){
 
+                }
+            }
+        }
     }
 
     // Constructeurs :
