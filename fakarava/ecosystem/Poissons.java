@@ -87,6 +87,7 @@ public abstract class Poissons implements Clock {
         return position_poisson;
     }
     public void se_deplace(Point p){
+        //TODO : Faire la méthode
     }
     
     public String toString(){

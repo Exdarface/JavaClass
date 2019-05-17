@@ -29,7 +29,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    private Integer force_courant= MAX_CURRENT_STRENGTH/nb_passe;
+    protected static Integer force_courant= MAX_CURRENT_STRENGTH/nb_passe;
 
     //Méthodes d'Instances :
 

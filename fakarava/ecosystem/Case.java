@@ -47,8 +47,20 @@ public class Case extends Lagune {
         return y;
     }
 
-    public void setContenu(Poissons[] contenu) {
-        this.contenu = contenu;
+    public void removeContenu(int index) {
+        int i = 0;
+        for (Poissons p : this.getContenu()){
+            if(i != index){
+                this.contenu[i] = p;
+                i++;
+            }
+            else{
+                index--;
+            }
+            
+        }
+            
+        
     }
 
     public Poissons[] getContenu() {

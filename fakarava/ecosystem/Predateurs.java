@@ -28,7 +28,14 @@ public class Predateurs extends Poissons {
                 int index_prey = 0;
                 int viv = 999;
                 for(int j = 0; j< temp.length; j++){
-
+                    if(temp[j].getClass() == Proies.class && ((Proies) temp[j]).getVivacite_proie() < viv){
+                        viv = ((Proies) temp[j]).getVivacite_proie();
+                        index_prey = j;
+                    }
+                }
+                double surva = Math.max(0,((Proies)temp[index_prey]).getVivacite_proie()/temp[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
+                if (rn.selection(surva)) {
+                    
                 }
             }
         }
