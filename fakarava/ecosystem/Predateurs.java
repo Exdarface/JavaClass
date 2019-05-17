@@ -1,11 +1,6 @@
 package fakarava.ecosystem;
 
-
-
 public class Predateurs extends Poissons {
-
-    
-
     /**
      * @attribute
      */
