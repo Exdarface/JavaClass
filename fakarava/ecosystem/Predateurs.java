@@ -13,10 +13,8 @@ public class Predateurs extends Poissons {
 
 
     public static void chasse() {
-        // TODO : Finir la méthode
         for (Case c : Lagune.grille) {
             if(c.getIs_passe()){
-                Poissons[] temp = c.getContenu();
                 Predateurs[] list_pred = {};
                 // Remplissage d'un tableau de Predateurs de c
                 for (Poissons p : c.getContenu()) {
@@ -31,36 +29,48 @@ public class Predateurs extends Poissons {
                         list_prey[list_prey.length] = ((Proies)p);
                     }
                 }
-                double poids_predator = list_pred[0].getPoids_poisson();
-                int index_predator = 0;
-                // Récupération du Predateurs le plus gros
-                for (int i =0; i < list_pred.length; i++) {
-                    if(list_pred[i].getPoids_poisson() > poids_predator){
-                        poids_predator = list_pred[i].getPoids_poisson();
-                        index_predator = i;
+                for (int k = 0; k < list_pred.length;k++) {
+                    double poids_predator = list_pred[0].getPoids_poisson();
+                    int index_predator = 0;
+                    // Récupération du Predateurs le plus gros
+                    for (int i =0; i < list_pred.length; i++) {
+                        if(list_pred[i].getPoids_poisson() > poids_predator){
+                            poids_predator = list_pred[i].getPoids_poisson();
+                            index_predator = i;
+                        }
                     }
-                }
-                int viv = list_prey[0].getVivacite_proie();
-                int index_prey = 0;
-                // Récupération de la Proies la moins vivace
-                for (int j = 0; j < list_prey.length; j++) {
-                    if(list_prey[j].getVivacite_proie() < viv){
-                        viv = list_prey[j].getVivacite_proie();
-                        index_prey = j;
+                    int viv = list_prey[0].getVivacite_proie();
+                    int index_prey = 0;
+                    // Récupération de la Proies la moins vivace
+                    for (int j = 0; j < list_prey.length; j++) {
+                        if(list_prey[j].getVivacite_proie() < viv){
+                            viv = list_prey[j].getVivacite_proie();
+                            index_prey = j;
+                        }
                     }
-                }
-                double surva = Math.max(0,list_prey[index_prey].getVivacite_proie()/list_prey[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
-                // Calcul de la survie
-                if (rn.selection(surva)) {
-                    Predateurs list_mordu = {};
-                    for(int i =0;i<list_pred.length;i++){
-                        if(i!=index_predator)
-                            list_mordu[list_mordu.length] = list_pred[i];
-                    }
-                    int index_mordre = rn.who(list_mordu.length);
-                    double q = list_pred[index_predator].getPoids_poisson()/BITE_FACTOR;
-                    if () {
+                    double surva = Math.max(0,list_prey[index_prey].getVivacite_proie()/list_prey[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
+                    // Calcul de la survie
+                    if (rn.selection(surva)) {
+                        // Création de la liste des AUTRES Predateurs
+                        Predateurs[] list_mordu = {};
+                        for(int i =0;i<list_pred.length;i++){
+                            if(i!=index_predator) // Si ce n'est pas celui attaqué
+                                list_mordu[list_mordu.length] = list_pred[i];
                         
+                        }
+                        int index_mordre = rn.who(list_mordu.length); // Attaque aléatoire
+                        double q = list_pred[index_predator].getPoids_poisson()/BITE_FACTOR; // Dégats de l'attaque
+                        if (list_mordu[index_mordre].getPoids_poisson() - q <= 0) {
+                            c.removeContenu(list_mordu[index_mordre]);
+                            for (Poissons po : temp_delete) {
+                                if (po.getClass() == Predateurs.class) {
+                                    list_pred[list_pred.length] = ((Predateurs)po);
+                                }
+                            }
+                        }
+                        else{
+                            c.removeContenu(index_prey);
+                        }
                     }
                 }
             }
