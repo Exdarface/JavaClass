@@ -44,20 +44,19 @@ public class Case extends Lagune {
         return y;
     }
 
-    public void removeContenu(int index) {
-        for (int i = 0; i < this.getContenu().length-1; i++) {
-            if(i >= index)
-                this.getContenu()[i] = this.getContenu()[i+1];
+    public void removeContenu(int num) {
+        Poissons[] temp = {};
+        for (int i = 0; i < this.getContenu().length; i++) {
+            if(this.getContenu()[i].getNumero_poisson() != num)
+                temp[temp.length] = this.getContenu()[i];
         }
+        this.setContenu(temp);
     }
 
-    public void removeContenu(Predateurs p){
-        for (int i = 0; i < this.getContenu().length-1; i++) {
-            if(this.getContenu()[i].getNumero_poisson() == p.getNumero_poisson())
-                this.getContenu()[i]
-        }
+    public void setContenu(Poissons[] p){
+        this.contenu = p;
     }
-
+    
     public Poissons[] getContenu() {
         return contenu;
     }

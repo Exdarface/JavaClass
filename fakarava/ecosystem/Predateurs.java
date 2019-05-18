@@ -60,16 +60,23 @@ public class Predateurs extends Poissons {
                         }
                         int index_mordre = rn.who(list_mordu.length); // Attaque aléatoire
                         double q = list_pred[index_predator].getPoids_poisson()/BITE_FACTOR; // Dégats de l'attaque
+                        // Mort du Predateurs si son poids est inférieur à q
                         if (list_mordu[index_mordre].getPoids_poisson() - q <= 0) {
-                            c.removeContenu(list_mordu[index_mordre]);
-                            for (Poissons po : temp_delete) {
+                            c.removeContenu(list_mordu[index_mordre].getNumero_poisson());
+                            for (Poissons po : c.getContenu()) {
                                 if (po.getClass() == Predateurs.class) {
                                     list_pred[list_pred.length] = ((Predateurs)po);
                                 }
                             }
                         }
+                        // Perte de poids du Predateurs si son poids est supérieur à q
                         else{
-                            c.removeContenu(index_prey);
+                            c.removeContenu(list_prey[index_prey].getNumero_poisson());
+                            for (Poissons p : c.getContenu()) {
+                                if(p.getClass() == Proies.class){
+                                    list_prey[list_prey.length] = ((Proies)p);
+                                }
+                            }
                         }
                     }
                 }
@@ -131,6 +138,9 @@ public class Predateurs extends Poissons {
             for (Poissons p : c.getContenu()) {
                 if (p.getClass() == Predateurs.class) {
                     p.setPoids_poisson(p.getPoids_poisson()-1);
+                    if(p.getPoids_poisson() <= 0){
+                        c.removeContenu(p.getNumero_poisson());
+                    }
                 }
             }
         }
