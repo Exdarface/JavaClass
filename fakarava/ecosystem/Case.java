@@ -1,8 +1,5 @@
 package fakarava.ecosystem;
 
-
-import java.awt.Point;
-
 //TODO : COMMENTARY
 public class Case extends Lagune {
     /**

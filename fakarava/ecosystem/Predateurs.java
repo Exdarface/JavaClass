@@ -17,25 +17,51 @@ public class Predateurs extends Poissons {
         for (Case c : Lagune.grille) {
             if(c.getIs_passe()){
                 Poissons[] temp = c.getContenu();
-                double poids = 0;
+                Predateurs[] list_pred = {};
+                // Remplissage d'un tableau de Predateurs de c
+                for (Poissons p : c.getContenu()) {
+                    if (p.getClass() == Predateurs.class) {
+                        list_pred[list_pred.length] = ((Predateurs)p);
+                    }
+                }
+                Proies[] list_prey = {};
+                // Remplissage d'un tableau de Proies de c
+                for (Poissons p : c.getContenu()) {
+                    if(p.getClass() == Proies.class){
+                        list_prey[list_prey.length] = ((Proies)p);
+                    }
+                }
+                double poids_predator = list_pred[0].getPoids_poisson();
                 int index_predator = 0;
-                for (int i = 0; i < temp.length; i++) {
-                    if(temp[i].getClass() == Predateurs.class && temp[i].getPoids_poisson() > poids){
-                        poids = temp[i].getPoids_poisson();
+                // Récupération du Predateurs le plus gros
+                for (int i =0; i < list_pred.length; i++) {
+                    if(list_pred[i].getPoids_poisson() > poids_predator){
+                        poids_predator = list_pred[i].getPoids_poisson();
                         index_predator = i;
                     }
                 }
+                int viv = list_prey[0].getVivacite_proie();
                 int index_prey = 0;
-                int viv = 999;
-                for(int j = 0; j< temp.length; j++){
-                    if(temp[j].getClass() == Proies.class && ((Proies) temp[j]).getVivacite_proie() < viv){
-                        viv = ((Proies) temp[j]).getVivacite_proie();
+                // Récupération de la Proies la moins vivace
+                for (int j = 0; j < list_prey.length; j++) {
+                    if(list_prey[j].getVivacite_proie() < viv){
+                        viv = list_prey[j].getVivacite_proie();
                         index_prey = j;
                     }
                 }
-                double surva = Math.max(0,((Proies)temp[index_prey]).getVivacite_proie()/temp[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
+                double surva = Math.max(0,list_prey[index_prey].getVivacite_proie()/list_prey[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
+                // Calcul de la survie
                 if (rn.selection(surva)) {
-                    
+                    Predateurs list_mordu = {};
+                    for(int i =0;i<list_pred.length;i++){
+                        if(i!=index_predator)
+                            list_mordu[list_mordu.length] = list_pred[i];
+                    }
+                    int index_mordre = rn.who(list_mordu.length);
+                    double q = list_pred[index_predator].getPoids_poisson()/BITE_FACTOR;
+                    if () {
+                        
+                    }
                 }
             }
         }
@@ -91,7 +117,13 @@ public class Predateurs extends Poissons {
 
     @Override
     public void ticktock() {
-        // Ne fait rien, mais import obligatoire
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                if (p.getClass() == Predateurs.class) {
+                    p.setPoids_poisson(p.getPoids_poisson()-1);
+                }
+            }
+        }
     }
 
     

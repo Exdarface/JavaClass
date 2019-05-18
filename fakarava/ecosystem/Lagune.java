@@ -34,7 +34,7 @@ public abstract class Lagune {
     //Méthodes d'Instances :
 
     public void setForce_courant(Integer force_courant) {
-        this.force_courant = force_courant;
+        Lagune.force_courant = force_courant;
     }
 
     public Integer getForce_courant() {
