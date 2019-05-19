@@ -140,13 +140,7 @@ public class Fakarava {
         else{
             Fakarava.isDay = true;
         }
-        Poissons[] list_Poissons = {};
-        for (Case c : Lagune.grille) {
-            for (Poissons p : c.getContenu()) {
-                list_Poissons[list_Poissons.length] = p;
-            }
-        }
-        if(Lagune.getMAX_DENSITY() < list_Poissons.length){
+        if(Lagune.getMAX_DENSITY() < Poissons.getNbr_poissons()){
             Fakarava.end = true;
         }
     }

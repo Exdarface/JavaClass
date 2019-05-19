@@ -10,7 +10,7 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
-    protected int nbr_poissons = 0;
+    protected static int nbr_poissons = 0;
 
     /**
      * @attribute
@@ -142,11 +142,26 @@ public abstract class Poissons implements Clock {
     }
 
     // Methodes de Classe :
-
+    /**
+     * Récupère le nombre de Poissons créés
+     * @return le nombre de Poissons créés
+     */
+    public static int getNbr_poissons() {
+        return nbr_poissons;
+    }
+    
+    /**
+     *Transforme l'unité de temps locale des Poissons
+     * @param unite_temps nouvelle unité de temps locale
+     */
     public static void setUnite_temps(Integer unite_temps) {
         Poissons.unite_temps = unite_temps;
     }
 
+    /**
+     * Récupère l'unité de temps locale des Poissons
+     * @return l'unité de temps locale des Poissons
+     */
     public static Integer getUnite_temps() {
         return unite_temps;
     }
