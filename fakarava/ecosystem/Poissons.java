@@ -87,7 +87,6 @@ public abstract class Poissons implements Clock {
         return position_poisson;
     }
     public void se_deplace(){
-        //TODO : Faire la méthode
         int[] new_pos = rn.move((int) this.getPosition_poisson().getX(),(int) this.getPosition_poisson().getY() , Lagune.N);
         if(new_pos[0] < Lagune.N && new_pos[1] < Lagune.N)
             this.setPosition_poisson(new Point(new_pos[0],new_pos[1]));
