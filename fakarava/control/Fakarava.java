@@ -9,6 +9,17 @@ public class Fakarava {
     public static boolean end = false;
     
     // Méthodes de classe :
+
+    /**
+     * Initialise une instance d'une Lagune
+     * @param biteFactor Puissance de la morsure des Predateurs
+     * @param maxCurrentStrength Force du courant Maximale
+     * @param maxDensity Densité de population de Poissons Maximale
+     * @param n Longueur de coté de la grille de la Lagune
+     * @param predatorCloneTime Délai de reproduction des Predateurs
+     * @param preyCloneTime Délai de reproduction des Proies
+     * @param seed graine de la simulation
+     */
     public static void init( int biteFactor, int maxCurrentStrength, int maxDensity,int n, int predatorCloneTime, int preyCloneTime, Long seed){
         Predateurs.setBITE_FACTOR(biteFactor);
         Lagune.setMAX_CURRENT_STRENGTH(maxCurrentStrength);
@@ -22,15 +33,45 @@ public class Fakarava {
 
     }
     
+    /**
+     * Creation d'un Predateurs
+     * @param name nom du Predateurs
+     * @param weight poids du Predateurs
+     * @param x position x du Predateurs
+     * @param y position y du Predateurs
+     * @return numero du Predateurs
+     */
     public static int createPredator(String name, double weight, int x, int y){
-        int new_preda = new Predateurs(name, weight, new Point(x,y)).getNumero_poisson();
+        Predateurs preda = new Predateurs(name,weight,new Point(x, y));
+        int emplacement = Case.get_case(preda.getPosition_poisson());
+        Lagune.grille[emplacement].addContenu(((Poissons)preda));
+        int new_preda = preda.getNumero_poisson();
         return new_preda;
     }
-    
+
+    /**
+     * Creation d'une Proies
+     * @param name nom de la Proies
+     * @param weight poids de la Proies
+     * @param x position x de la Proies
+     * @param y position y de la Proies
+     * @param dayVivacity vivacite de la Proies de jour
+     * @return numero de la Proies
+     */
     public static int createPrey(String name, int weight, int x, int y, int dayVivacity){
-        int new_prey = new Proies(name, weight, new Point(x,y), dayVivacity).getNumero_poisson();
+        Proies prey = new Proies(name, weight, new Point(x,y), dayVivacity);
+        int emplacement = Case.get_case(prey.getPosition_poisson());
+        Lagune.grille[emplacement].addContenu(((Poissons)prey));
+        int new_prey = prey.getNumero_poisson();
         return new_prey;
     }
+
+    /**
+     * Creation d'une passe
+     * @param x coordonnée x de la Case se transformant en passe
+     * @param y coordonnée y de la Case se transformant en passe
+     * @return 1 si la passe à été crée, 0 si elle ne l'as pas été
+     */
     public static int createFishWay(int x, int y){
         if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
             for (Case c : Lagune.grille) {
@@ -69,7 +110,9 @@ public class Fakarava {
         // TODO : Finir la méthode
 
     }
-    
+    /**
+     * augmente les pendules chronobiologiques des Poissons
+     */
     public static void clockForward(){
         Poissons.unite_temps++;
         for (Case c : Lagune.grille) {
