@@ -1,4 +1,6 @@
 package fakarava.control;
+import java.util.Random;
+
 import fakarava.ecosystem.*;
 
 public class Fakarava {
@@ -15,6 +17,7 @@ public class Fakarava {
         Predateurs.setPREDATOR_CLONE_TIME(predatorCloneTime);
         Proies.setPREY_CLONE_TIME(preyCloneTime);
         Lagune.creer_grille();
+        Random rn = new Random(seed);
         Fakarava.end = true;
 
     }
