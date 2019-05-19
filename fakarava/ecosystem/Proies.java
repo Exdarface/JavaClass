@@ -52,7 +52,7 @@ public class Proies extends Poissons {
     /**
      * Reproduit toutes les Proies de la Lagune et les ajoute au contenu de la Case
      */
-    public static void se_reproduit() {
+    public static void se_reproduitprey() {
 
         if(unite_temps/PREY_CLONE_TIME ==1){
             for (Case c : Lagune.grille) {

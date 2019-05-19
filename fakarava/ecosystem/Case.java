@@ -113,7 +113,7 @@ public class Case extends Lagune {
      * @param p coordonnées de la Case voulue
      * @return coordonnées de la Case voulu adaptée à la grille de la Lagune
      */
-    public static int get_case(Point p) {
+    public static int getCase(Point p) {
         int res = -1;
         if (p.getX()<N && p.getY()<N) {
             for (int i = 0; i < N; i++) {

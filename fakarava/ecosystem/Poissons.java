@@ -35,7 +35,7 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
-    public static Integer unite_temps = 1;
+    protected static Integer unite_temps = 1;
 
     // Générateur aléatoire : 
     static Random rn = Random.getARandom();
@@ -51,7 +51,7 @@ public abstract class Poissons implements Clock {
         nbr_poissons++;
     }
 
-    // Méthodes de classe :
+    // Méthodes d'instance :
 
     /**
      * Récupère le numéro du Poissons pointé
@@ -141,7 +141,16 @@ public abstract class Poissons implements Clock {
         this.age_poisson+","+this.position_poisson.toString()+"\n";
     }
 
-    // Méthodes implémentées : 
+    // Methodes de Classe :
+
+    public static void setUnite_temps(Integer unite_temps) {
+        Poissons.unite_temps = unite_temps;
+    }
+
+    public static Integer getUnite_temps() {
+        return unite_temps;
+    }
+    // Méthodes implémentées :
 
     /**
      * Augmente l'âge de chaque Poisson de 1

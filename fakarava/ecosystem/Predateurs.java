@@ -12,6 +12,24 @@ public class Predateurs extends Poissons {
      */
     private static Integer BITE_FACTOR;
 
+    // Constructeurs :
+
+    public Predateurs(String nom,double poids_poisson,Point position_poisson) {
+        super(nom,poids_poisson,position_poisson);
+    }
+
+    //Méthodes d'Instances : 
+
+    /**
+     * Donne toutes les informations du Predateurs pointé
+     */
+    @Override
+    public String toString() {
+        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
+            this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
+    }
+
+    //Methodes de classe :
 
     /**
      * Fait chasser tous les Predateurs de la Lagune
@@ -101,30 +119,11 @@ public class Predateurs extends Poissons {
             }
         }
     }
-
-    // Constructeurs :
-
-    public Predateurs(String nom,double poids_poisson,Point position_poisson) {
-        super(nom,poids_poisson,position_poisson);
-    }
-
-    //Méthodes d'Instances : 
-
-    /**
-     * Donne toutes les informations du Predateurs pointé
-     */
-    @Override
-    public String toString() {
-        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
-            this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
-    }
-
-    //Methodes de classe :
-
+    
     /**
      * Fait se reproduire par clonage tous les Predateurs de la Lagune
      */
-    public static void se_reproduit() {
+    public static void se_reproduitpred() {
         if(unite_temps/PREDATOR_CLONE_TIME ==1){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
