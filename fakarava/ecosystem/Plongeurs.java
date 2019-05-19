@@ -31,6 +31,7 @@ public class Plongeurs {
     public void se_presenter() {
         String res = "Plongeur " + this.id_plongeur + " : " + 
             this.nom + " (" + this.labo + ")";
+            System.out.println(res);
     }
 
     public void remplir_log() {

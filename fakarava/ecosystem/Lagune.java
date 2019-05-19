@@ -5,7 +5,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    public static Integer N;
+    protected static Integer N;
 
     /**
      * @attribute
@@ -24,55 +24,70 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    public static Case[] grille;
+    public static Case[] grille; // Tableau de Case construisant notre Lagune
 
     /**
      * @attribute
      */
-    protected static Integer force_courant= MAX_CURRENT_STRENGTH/nb_passe;
-
-    //Méthodes d'Instances :
-
-    public void setForce_courant(Integer force_courant) {
-        Lagune.force_courant = force_courant;
-    }
-
-    public Integer getForce_courant() {
-        return force_courant;
-    }
+    protected static Integer force_courant= Lagune.MAX_CURRENT_STRENGTH/nb_passe;
 
     //Méthodes de classe : 
 
+    /**
+     * Change la densité Maximale de la Lagune
+     * @param MAX_DENSITY nouvelle densitée Maximale
+     */
     public static void setMAX_DENSITY(Integer MAX_DENSITY){
         Lagune.MAX_DENSITY = MAX_DENSITY;
     }
+
+    /**
+     * Récupère la densité Maximale de la Lagune
+     * @return densitée Maximale de la Lagune
+     */
     public static Integer getMAX_DENSITY(){
         return MAX_DENSITY;
     }
 
+    /**
+     * Créé un tableau de Case construisant notre Lagune
+     */
     public static void creer_grille() {
-        int k = -1;
         for (int i = 0; i < N; i++) {
-            k++;
             for (int j = 0; j < N; j++) {
-                grille[k] = new Case(i,j);
-                k++;
+                grille[grille.length] = new Case(i,j);
             }
         }
     }
 
+    /**
+     * Change la longueur de coté de la grille
+     * @param N longueur de la grille
+     */
     public static void setN(Integer N) {
         Lagune.N = N;
     }
 
+    /**
+     * Récupère la longueur de coté de la grille
+     * @return la longueur de coté de la grille
+     */
     public static Integer getN() {
         return N;
     }
 
+    /**
+     * Transforme la force du courant Maximale de la Lagune
+     * @param MAX_CURRENT_STRENGTH nouvelle force du courant Maximale
+     */
     public static void setMAX_CURRENT_STRENGTH(Integer MAX_CURRENT_STRENGTH) {
         Lagune.MAX_CURRENT_STRENGTH = MAX_CURRENT_STRENGTH;
     }
 
+    /**
+     * Récupère la force du courant Maximale de la Lagune
+     * @return force du courant Maximale de la Lagune
+     */
     public static Integer getMAX_CURRENT_STRENGTH() {
         return MAX_CURRENT_STRENGTH;
     }

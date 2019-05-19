@@ -6,7 +6,7 @@ import fakarava.ecosystem.*;
 public class Fakarava {
     // Champs :
     private static boolean isDay= true;
-    public static boolean end;
+    public static boolean end = false;
     
     // Méthodes de classe :
     public static void init( int biteFactor, int maxCurrentStrength, int maxDensity,int n, int predatorCloneTime, int preyCloneTime, Long seed){
@@ -32,17 +32,17 @@ public class Fakarava {
         return new_prey;
     }
     public static int createFishWay(int x, int y){
-        if ((y > 0 && y < Lagune.N-1) && (x == 0 || x == Lagune.N-1)) {
+        if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
             for (Case c : Lagune.grille) {
-                if(Case.get_case(new Point(c.getX(),c.getY())) == x*Lagune.N+y)
-                    Lagune.grille[x*Lagune.N+y].setIs_passe(true);
+                if(Case.get_case(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
+                    Lagune.grille[x*Lagune.getN()+y].setIs_passe(true);
             }
             return 1;
         }
-        if(y == 0 || y == Lagune.N){
+        if(y == 0 || y == Lagune.getN()){
             for (Case c : Lagune.grille) {
-                if(Case.get_case(new Point(c.getX(),c.getY())) == x*Lagune.N+y)
-                    Lagune.grille[x*Lagune.N+y].setIs_passe(true);
+                if(Case.get_case(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
+                    Lagune.grille[x*Lagune.getN()+y].setIs_passe(true);
             }
             return 1;
         }
@@ -72,24 +72,38 @@ public class Fakarava {
     
     public static void clockForward(){
         Poissons.unite_temps++;
-        if(Fakarava.isDay = true){
-            Fakarava.isDay = false;
-        }
-        else{
-            Fakarava.isDay = true;
-        }
         for (Case c : Lagune.grille) {
             for (Poissons p : c.getContenu()) {
-                if(p.getClass() == Proies.class){ // Réduire ou augmenter la vivacité
+                if(p.getClass() == Proies.class){ // Réduire ou augmenter la vivacité de chaque Proies
                     ((Proies)p).ticktock();
                 }
-                if(p.getClass() == Predateurs.class){
-                    
+                if(p.getClass() == Predateurs.class){ // Réduire le poids de chaque Prédateurs
+                    ((Predateurs)p).ticktock();
                 }
                 p.ticktock();                   
             }   
         }
-        Predateurs.chasse();
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                p.se_deplace();
+            }
+        }
+        if(Fakarava.isDay = true){
+            Fakarava.isDay = false;
+            Predateurs.chasse();
+        }
+        else{
+            Fakarava.isDay = true;
+        }
+        Poissons[] list_Poissons = {};
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                list_Poissons[list_Poissons.length] = p;
+            }
+        }
+        if(Lagune.getMAX_DENSITY() < list_Poissons.length){
+            Fakarava.end = true;
+        }
     }
 
     public static String[] spyReport(){
