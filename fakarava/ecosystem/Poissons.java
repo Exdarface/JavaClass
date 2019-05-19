@@ -5,12 +5,12 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
-    private Integer numero_poisson;
+    private int numero_poisson;
 
     /**
      * @attribute
      */
-    protected Integer nbr_poissons = 0;
+    protected int nbr_poissons = 0;
 
     /**
      * @attribute
@@ -25,7 +25,7 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
-    private Integer age_poisson;
+    private int age_poisson;
 
     /**
      * @attribute
@@ -35,14 +35,15 @@ public abstract class Poissons implements Clock {
     /**
      * @attribute
      */
-    protected static Integer unite_temps = 0;
+    public static Integer unite_temps = 1;
 
     // Générateur aléatoire : 
     static Random rn = Random.getARandom();
 
     // Constructeurs : 
-    public Poissons(double poids_poisson,Point position_poisson) {
+    public Poissons(String nom,double poids_poisson,Point position_poisson) {
         
+        this.nom_poisson = nom;
         this.numero_poisson = nbr_poissons+1;
         this.poids_poisson = poids_poisson;
         this.age_poisson = 1;
@@ -93,12 +94,17 @@ public abstract class Poissons implements Clock {
     }
     
     public String toString(){
-        return this.numero_poisson.toString()+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
-        this.age_poisson.toString()+","+this.position_poisson.toString()+"\n";
+        return this.numero_poisson+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
+        this.age_poisson+","+this.position_poisson.toString()+"\n";
     }
 
     // Méthodes implémentées : 
-    public void ticktok(){
-        this.age_poisson++;
+    public void ticktock() {
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                p.age_poisson++;
+            }
+        }
+        
     }
 }

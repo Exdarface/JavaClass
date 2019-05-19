@@ -13,8 +13,8 @@ public class Proies extends Poissons {
     private static Integer PREY_CLONE_TIME;
 
     // Constructeurs :
-    public Proies(double poids_poisson,Point position_poisson,Integer vivacite_proie) {
-        super(poids_poisson,position_poisson);
+    public Proies(String nom,double poids_poisson,Point position_poisson,Integer vivacite_proie) {
+        super(nom,poids_poisson,position_poisson);
         this.vivacite_proie = vivacite_proie;
         String[] espece = {"Vieille","Anguille","Dauphin","Esturgon","Dorade","Mérou","Loche","Raie","Truite"};
         this.setNom_poisson(espece[rn.nextInt(5)]);
@@ -36,13 +36,29 @@ public class Proies extends Poissons {
     }
 
     // Méthodes de classe : 
+    public static boolean checkMAX_DENSITY(){
+        Proies[] list_prey = {};
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                if(p.getClass() == Proies.class){
+                    list_prey[list_prey.length] = ((Proies)p);
+                }
+            }
+        }
+        boolean res = false;
+        if(Lagune.MAX_DENSITY <= list_prey.length){
+            res = true;
+        }
+        return res;
+    }
+
     public static void se_reproduit() {
 
         if(unite_temps/PREY_CLONE_TIME ==1){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Proies.class){
-                        c.addContenu(new Proies(p.getPoids_poisson(),p.getPosition_poisson(),rn.nextInt(15)+1));
+                        c.addContenu(new Proies(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson(),rn.nextInt(15)+1));
                     }
                 }
             }

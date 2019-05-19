@@ -5,7 +5,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    protected static Integer N;
+    public static Integer N;
 
     /**
      * @attribute
@@ -19,7 +19,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    private static Integer MAX_DENSITY;
+    protected static Integer MAX_DENSITY;
 
     /**
      * @attribute

@@ -22,12 +22,6 @@ public class Plongeurs {
     private String nom;
 
     // Constructeurs:
-    public Plongeurs(Integer id_plongeur, String nom, String labo, String log) {
-        this.nom = nom;
-        this.labo = labo;
-        this.id_plongeur = id_plongeur;
-        this.log = log;
-    }
     public Plongeurs(String name, String labo) {
         this.nom = name;
         this.labo = labo;

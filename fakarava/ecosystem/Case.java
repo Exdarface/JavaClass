@@ -75,15 +75,17 @@ public class Case extends Lagune {
 
     // Méthodes de classe : 
 
-    public static void get_case(Point p,Case c) {
+    public static int get_case(Point p) {
+        int res = -1;
         if (p.getX()<N && p.getY()<N) {
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
                     if(p.getX()== i && p.getY()== j){
-                        c = grille[i*N+j];
+                        res = i*N+j;
                     }
                 }
             }
-        }        
+        }
+        return res;        
     }
 }

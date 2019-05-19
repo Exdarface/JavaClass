@@ -15,7 +15,7 @@ public class Predateurs extends Poissons {
 
     public static void chasse() {
         for (Case c : Lagune.grille) {
-            if(c.getIs_passe()){
+            if(c.getIs_passe()){ // Si la case est une passe
                 Predateurs[] list_pred = {};
                 // Remplissage d'un tableau de Predateurs de c
                 for (Poissons p : c.getContenu()) {
@@ -30,7 +30,7 @@ public class Predateurs extends Poissons {
                         list_prey[list_prey.length] = ((Proies)p);
                     }
                 }
-                for (int k = 0; k < list_pred.length;k++) {
+                for (int k = 0; k < list_pred.length;k++) { // Pour tous les Predateurs présents
                     double poids_predator = list_pred[0].getPoids_poisson();
                     int index_predator = 0;
                     // Récupération du Predateurs le plus gros
@@ -72,25 +72,36 @@ public class Predateurs extends Poissons {
                         }
                         // Perte de poids du Predateurs si son poids est supérieur à q
                         else{
-                            c.removeContenu(list_prey[index_prey].getNumero_poisson());
-                            for (Poissons p : c.getContenu()) {
-                                if(p.getClass() == Proies.class){
-                                    list_prey[list_prey.length] = ((Proies)p);
-                                }
+                            list_mordu[index_mordre].setPoids_poisson(list_mordu[index_mordre].getPoids_poisson()-q);
+                        }
+                    }
+                    // Mort de la Proie
+                    else{
+                        c.removeContenu(list_prey[index_prey].getNumero_poisson());
+                        for (Poissons p : c.getContenu()) {
+                            if(p.getClass() == Proies.class){
+                                list_prey[list_prey.length] = ((Proies)p);
                             }
                         }
                     }
                 }
+                // Mise à jour des Poissons présents dans la Case
+                Poissons[] list_final = {};
+                for (Predateurs p : list_pred) {
+                    list_final[list_final.length] = ((Poissons)p);
+                }
+                for (Proies p : list_prey) {
+                    list_final[list_final.length] = ((Poissons)p);
+                }
+                c.setContenu(list_final);
             }
         }
     }
 
     // Constructeurs :
 
-    public Predateurs(double poids_poisson,Point position_poisson) {
-        super(poids_poisson,position_poisson);
-        String[] espece = {"Requin-Tigre","Requin-Marteau","Requin-Bouledogue","Requin-taureau","Requin Blanc"};
-        this.setNom_poisson(espece[rn.nextInt(5)]);
+    public Predateurs(String nom,double poids_poisson,Point position_poisson) {
+        super(nom,poids_poisson,position_poisson);
     }
 
     //Méthodes d'Instances : 
@@ -108,7 +119,7 @@ public class Predateurs extends Poissons {
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Predateurs.class){
-                        c.addContenu(new Predateurs(p.getPoids_poisson(),p.getPosition_poisson()));
+                        c.addContenu(new Predateurs(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson()));
                     }
                 }
             }
@@ -135,16 +146,14 @@ public class Predateurs extends Poissons {
 
     @Override
     public void ticktock() {
-        for (Case c : Lagune.grille) {
-            for (Poissons p : c.getContenu()) {
-                if (p.getClass() == Predateurs.class) {
-                    p.setPoids_poisson(p.getPoids_poisson()-1);
-                    if(p.getPoids_poisson() <= 0){
-                        c.removeContenu(p.getNumero_poisson());
+        this.setPoids_poisson(this.getPoids_poisson()-1); // Réduire le poids
+                    if(this.getPoids_poisson() == 0){// Tuer si son poids atteint 0
+                        for (Case c : Lagune.grille) {
+                            if(c.getX() == this.getPosition_poisson().getX() && c.getY() == this.getPosition_poisson().getY()){
+                                c.removeContenu(this.getNumero_poisson()); // Tuer en l'enlevant de la liste de la Case
+                            }
+                        }
                     }
-                }
-            }
-        }
     }
 
     
