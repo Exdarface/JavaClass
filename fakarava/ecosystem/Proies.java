@@ -21,14 +21,26 @@ public class Proies extends Poissons {
     }
 
     // Méthodes d'instance : 
+
+    /**
+     * Transforme la vivacité de la Proie pointée
+     * @param vivacite_proie nouvelle vivacité de la Proie
+     */
     public void setVivacite_proie(Integer vivacite_proie) {
         this.vivacite_proie = vivacite_proie;
     }
 
+    /**
+     * Récupère la vivacité de la Proie pointée
+     * @return vivacité de la Proie pointée
+     */
     public Integer getVivacite_proie() {
         return vivacite_proie;
     }
 
+    /**
+     * Donne toutes les informations de la Proie pointée
+     */
     @Override
     public String toString() {
         return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
@@ -36,22 +48,10 @@ public class Proies extends Poissons {
     }
 
     // Méthodes de classe : 
-    public static boolean checkMAX_DENSITY(){
-        Proies[] list_prey = {};
-        for (Case c : Lagune.grille) {
-            for (Poissons p : c.getContenu()) {
-                if(p.getClass() == Proies.class){
-                    list_prey[list_prey.length] = ((Proies)p);
-                }
-            }
-        }
-        boolean res = false;
-        if(Lagune.MAX_DENSITY <= list_prey.length){
-            res = true;
-        }
-        return res;
-    }
 
+    /**
+     * Reproduit toutes les Proies de la Lagune et les ajoute au contenu de la Case
+     */
     public static void se_reproduit() {
 
         if(unite_temps/PREY_CLONE_TIME ==1){
@@ -65,15 +65,27 @@ public class Proies extends Poissons {
         }
     }
 
+    /**
+     * Transforme le délai de reproduction des Proies de la Lagune
+     * @param PREY_CLONE_TIME délai de reproduction des Proies de la Lagune
+     */
     public static void setPREY_CLONE_TIME(Integer PREY_CLONE_TIME) {
         Proies.PREY_CLONE_TIME = PREY_CLONE_TIME;
     }
 
+    /**
+     * Récupère le délai de reproduction des Proies de la Lagune
+     * @return le délai de reproduction des Proies de la Lagune
+     */
     public static Integer getPREY_CLONE_TIME() {
         return PREY_CLONE_TIME;
     }
 
     // Méthodes implémentées : 
+
+    /**
+     * Adapte la vivacité des Proies suivant l'état de la journée (jour ou nuit)
+     */
     @Override
     public void ticktock() {
         if (unite_temps%2 != 0 && this.getClass() == Proies.class) {
