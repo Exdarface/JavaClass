@@ -66,9 +66,4 @@ public class Plongeurs {
         return this.nom + " " + this.id_plongeur + " (" + 
             this.labo + ") " + this.log;
     }
-
-    // Méthodes de classe:
-    public static void Plongeurs(String name, String labo) {
-        Plongeurs(name, labo);
-	}
 }

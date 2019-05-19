@@ -29,9 +29,4 @@ public class Point extends java.awt.Point {
     public String toString() {
         return this.x + ", " + this.y;
     }
-
-    // Méthodes de classe :
-	public static void Point(int x, int y) {
-		Point(x,y);
-	}
 }
