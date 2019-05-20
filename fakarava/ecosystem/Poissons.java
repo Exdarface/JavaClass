@@ -1,6 +1,5 @@
 package fakarava.ecosystem;
 
-//TODO : COMMENTARY
 public abstract class Poissons implements Clock {
     /**
      * @attribute
@@ -143,24 +142,24 @@ public abstract class Poissons implements Clock {
 
     // Methodes de Classe :
     /**
-     * Récupère le nombre de Poissons créés
-     * @return le nombre de Poissons créés
+     * Rï¿½cupï¿½re le nombre de Poissons crï¿½ï¿½s
+     * @return le nombre de Poissons crï¿½ï¿½s
      */
     public static int getNbr_poissons() {
         return nbr_poissons;
     }
     
     /**
-     *Transforme l'unité de temps locale des Poissons
-     * @param unite_temps nouvelle unité de temps locale
+     *Transforme l'unitï¿½ de temps locale des Poissons
+     * @param unite_temps nouvelle unitï¿½ de temps locale
      */
     public static void setUnite_temps(Integer unite_temps) {
         Poissons.unite_temps = unite_temps;
     }
 
     /**
-     * Récupère l'unité de temps locale des Poissons
-     * @return l'unité de temps locale des Poissons
+     * Rï¿½cupï¿½re l'unitï¿½ de temps locale des Poissons
+     * @return l'unitï¿½ de temps locale des Poissons
      */
     public static Integer getUnite_temps() {
         return unite_temps;
