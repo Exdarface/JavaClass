@@ -140,7 +140,20 @@ public class Fakarava {
         else{
             Fakarava.isDay = true;
         }
+        //Itération 1 : Trop de Poissons dans la LaguneS
         if(Lagune.getMAX_DENSITY() < Poissons.getNbr_poissons()){
+            Fakarava.end = true;
+        }
+        //Itération 2 : Plus de Proies dans la Lagune
+        Proies[] list_prey = {};
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                if(p.getClass() == Proies.class){
+                    list_prey[list_prey.length] = ((Proies)p);
+                }
+            }
+        }
+        if(list_prey.length == 0){
             Fakarava.end = true;
         }
     }
