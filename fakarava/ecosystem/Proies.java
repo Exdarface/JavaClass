@@ -15,8 +15,6 @@ public class Proies extends Poissons {
     public Proies(String nom,double poids_poisson,Point position_poisson,Integer vivacite_proie) {
         super(nom,poids_poisson,position_poisson);
         this.vivacite_proie = vivacite_proie;
-        String[] espece = {"Vieille","Anguille","Dauphin","Esturgon","Dorade","Mérou","Loche","Raie","Truite"};
-        this.setNom_poisson(espece[rn.nextInt(5)]);
     }
 
     // Méthodes d'instance : 
