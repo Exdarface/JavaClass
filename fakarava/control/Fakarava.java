@@ -133,7 +133,7 @@ public class Fakarava {
                 p.se_deplace();
             }
         }
-        if(Fakarava.isDay = true){
+        if(Fakarava.isDay == true){
             Fakarava.isDay = false;
             Predateurs.chasse();
         }
