@@ -51,7 +51,7 @@ public class Proies extends Poissons {
      */
     public static void se_reproduitprey() {
 
-        if(unite_temps/PREY_CLONE_TIME ==1){
+        if(unite_temps%PREY_CLONE_TIME == 0){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Proies.class){

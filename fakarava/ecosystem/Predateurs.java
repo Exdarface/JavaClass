@@ -123,7 +123,7 @@ public class Predateurs extends Poissons {
      * Fait se reproduire par clonage tous les Predateurs de la Lagune
      */
     public static void se_reproduitpred() {
-        if(unite_temps/PREDATOR_CLONE_TIME ==1){
+        if(unite_temps%PREDATOR_CLONE_TIME ==0){
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Predateurs.class){
