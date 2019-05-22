@@ -36,16 +36,13 @@ public class Predateurs extends Poissons {
     public static void chasse() {
         for (Case c : Lagune.grille) {
             if(c.getIs_passe()){ // Si la case est une passe
+                Proies[] list_prey = {};
                 Predateurs[] list_pred = {};
-                // Remplissage d'un tableau de Predateurs de c
+                // Remplissage d'un tableau de Predateurs et d'un tableau de Proies de c
                 for (Poissons p : c.getContenu()) {
                     if (p.getClass() == Predateurs.class) {
                         list_pred[list_pred.length] = ((Predateurs)p);
                     }
-                }
-                Proies[] list_prey = {};
-                // Remplissage d'un tableau de Proies de c
-                for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Proies.class){
                         list_prey[list_prey.length] = ((Proies)p);
                     }
