@@ -22,6 +22,11 @@ public class Case extends Lagune {
      */
     private Boolean is_passe= false;
 
+    /**
+     * @attribute
+     */
+    protected Integer id_camera_assos;
+
     // Constructeurs :
     public Case(int x,int y){
         this.x = x;
@@ -98,6 +103,21 @@ public class Case extends Lagune {
         return is_passe;
     }
 
+    /**
+     * Récupère l'id de la Camera presente dans la Case
+     * @return l'id de la Camera presente dans la Case
+     */
+    public Integer getId_camera_assos(){
+        return id_camera_assos;
+    }
+
+    /**
+     * Transforme l'id de la Camera présente dans la Case
+     * @param id_camera_assos l'id de la nouvelle Camera presente dans la Case
+     */
+    public void setId_camera_assos(Integer id_camera_assos){
+        this.id_camera_assos = id_camera_assos;
+    }
     /**
      * Ajoute un Poissons dans le contenu d'une Case
      * @param p Poissons à ajouter

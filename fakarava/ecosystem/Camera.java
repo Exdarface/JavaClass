@@ -1,10 +1,10 @@
 package fakarava.ecosystem;
 
-public class Camera extends Plongeurs {
+public class Camera {
     /**
      * @attribute
      */
-    private String description_poissons;
+    private String[] description_poissons;
 
     /**
      * @attribute
@@ -14,8 +14,34 @@ public class Camera extends Plongeurs {
     /**
      * @attribute
      */
-    private String description_chasse;
+    private String[] description_chasse;
 
+    /**
+     * @attribute
+     */
+    private static Camera[] all_camera;
+
+
+    public Camera(Point id_camera) {
+        this.id_camera = id_camera;
+        for (Case c : Lagune.grille) {
+            if(c.getX() == id_camera.getX() && c.getY() == id_camera.getY()){
+                for (Poissons p : c.getContenu()) {
+                    this.description_poissons[this.description_poissons.length] = p.toString();
+                }
+            }
+        }          
+    }
+
+    public void updateCamera(){
+        for (Case c : Lagune.grille) {
+            if(c.getX() == id_camera.getX() && c.getY() == id_camera.getY()){
+                for (Poissons p : c.getContenu()) {
+                    this.description_poissons[this.description_poissons.length] = p.toString();
+                }
+            }
+        }     
+    }
     public static Camera add_camera() {
         // TODO : Finir la méthode
     }
@@ -24,11 +50,11 @@ public class Camera extends Plongeurs {
         // TODO : Finir la méthode
     }
 
-    public void setDescription_poissons(String description_poissons) {
+    public void setDescription_poissons(String[] description_poissons) {
         this.description_poissons = description_poissons;
     }
 
-    public String getDescription_poissons() {
+    public String[] getDescription_poissons() {
         return description_poissons;
     }
 
@@ -40,11 +66,15 @@ public class Camera extends Plongeurs {
         return id_camera;
     }
 
-    public void setDescription_chasse(String description_chasse) {
+    public void setDescription_chasse(String[] description_chasse) {
         this.description_chasse = description_chasse;
     }
 
-    public String getDescription_chasse() {
+    public String[] getDescription_chasse() {
         return description_chasse;
     }
+    public static Camera[] getAll_camera(){
+        return all_camera;
+    }
+    
 }
