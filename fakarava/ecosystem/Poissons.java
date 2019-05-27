@@ -1,6 +1,6 @@
 package fakarava.ecosystem;
 
-public abstract class Poissons implements Clock {
+public abstract class Poissons {
     /**
      * @attribute
      */

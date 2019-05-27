@@ -31,12 +31,14 @@ public class Emetteur {
         return "Emetteur : "+this.id_emetteur+","+this.id_plongeur_assos+","+this.description_predateur;
     }
 
-    public Integer getId_plongeur(){
+    public Integer getId_plongeur_assos() {
         return id_plongeur_assos;
     }
-    public void setId_plongeur(Integer id_plongeur_assos){
+
+    public void setId_plongeur_assos(Integer id_plongeur_assos) {
         this.id_plongeur_assos = id_plongeur_assos;
     }
+
     public Integer getId_emetteur() {
         return id_emetteur;
     }

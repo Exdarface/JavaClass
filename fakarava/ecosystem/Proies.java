@@ -1,6 +1,6 @@
 package fakarava.ecosystem;
 
-public class Proies extends Poissons {
+public class Proies extends Poissons{
     /**
      * @attribute
      */

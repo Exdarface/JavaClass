@@ -20,6 +20,10 @@ public class Camera {
      * @attribute
      */
     private static Camera[] all_camera;
+    /**
+     * @attribute
+     */
+    private Integer id_plongeur_assos;
 
 
     public Camera(Point id_camera) {

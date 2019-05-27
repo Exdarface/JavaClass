@@ -1,6 +1,6 @@
 package fakarava.ecosystem;
 
-public class Case extends Lagune {
+public class Case extends Lagune{
     /**
      * @attribute
      */
