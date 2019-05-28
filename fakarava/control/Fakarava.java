@@ -57,7 +57,7 @@ public class Fakarava {
      * @param dayVivacity vivacite de la Proies de jour
      * @return numero de la Proies
      */
-    public static int createPrey(String name, int weight, int x, int y, int dayVivacity){
+    public static int createPrey(String name, double weight, int x, int y, int dayVivacity){
         Proies prey = new Proies(name, weight, new Point(x,y), dayVivacity);
         int emplacement = Case.getCase(prey.getPosition_poisson());
         Lagune.grille[emplacement].addContenu(((Poissons)prey));
@@ -71,7 +71,7 @@ public class Fakarava {
      * @param y coordonnée y de la Case se transformant en passe
      * @return 1 si la passe à été crée, 0 si elle ne l'as pas été
      */
-    public static int createFishWay(int x, int y){
+    public static int createFishway(int x, int y){
         if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
             for (Case c : Lagune.grille) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
@@ -86,7 +86,6 @@ public class Fakarava {
             }
             return 1;
         }
-        
         return 0;
     }
 
