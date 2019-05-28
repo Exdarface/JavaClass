@@ -132,4 +132,15 @@ public class Camera {
     public Integer getId_plongeur_assos(){
         return id_plongeur_assos;
     }
+    public static void removeAll_camera(Camera c){
+        boolean estTrouve = false;
+        for (int i = 0; i < Camera.all_camera.length-1; i++) {
+            if(c == Camera.all_camera[i]){
+                estTrouve = true;
+            }
+            if(c != Camera.all_camera[i] && estTrouve) {
+                Camera.all_camera[i] = Camera.all_camera[i+1];
+            }
+        }
+    }
 }

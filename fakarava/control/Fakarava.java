@@ -108,7 +108,12 @@ public class Fakarava {
     public static void deleteDiver(int diver){
         for (Camera c : Camera.getAll_camera()) {
             if(c.getId_plongeur_assos() == diver){
-                
+                Camera.removeAll_camera(c);
+            }
+        }
+        for(Emetteur e : Emetteur.getAll_emetteur()){
+            if(e.getId_plongeur_assos() == diver){
+                Emetteur.removeAll_emetteur(e);
             }
         }
     }
