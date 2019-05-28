@@ -1,4 +1,5 @@
 package fakarava.sim;
+
 import fakarava.control.*;
 
 public class Simulation {
@@ -17,10 +18,10 @@ public class Simulation {
         int bertha = Fakarava.createPredator("Requin Marteau", 100.0, 1, 2);
         int adolphe = Fakarava.createPredator("Requin Gris", 75.0, 0, 2);
         int p1 = Fakarava.createFishway(0, 2);
-        int enzo = Fakarava.createDiver("Enzo", "Tahiti");
+        //int enzo = Fakarava.createDiver("Enzo", "Tahiti");
         Fakarava.clockForward();
-        Fakarava.putCamera(enzo, p1);
-        Fakarava.putTransmitters(enzo, p1);
+        //Fakarava.putCamera(enzo, p1);
+        //Fakarava.putTransmitters(enzo, p1);
         long time = 1;
         while(!Fakarava.end){
             Fakarava.clockForward();

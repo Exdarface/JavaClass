@@ -1,5 +1,7 @@
 package fakarava.ecosystem;
 
+import java.util.ArrayList;
+
 public abstract class Lagune {
     /**
      * @attribute
@@ -23,7 +25,7 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    public static Case[] grille; // Tableau de Case construisant notre Lagune
+    public static ArrayList<Case> grille; // Tableau de Case construisant notre Lagune
 
 
 
@@ -49,10 +51,10 @@ public abstract class Lagune {
      * Créé un tableau de Case construisant notre Lagune
      */
     public static void creer_grille() {
-        Lagune.grille = new Case[N*N];
+        Lagune.grille = new ArrayList<Case>();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                grille[grille.length] = new Case(i,j);
+                Lagune.grille.add(new Case(i,j));
             }
         }
     }

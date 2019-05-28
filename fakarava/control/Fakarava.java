@@ -43,7 +43,7 @@ public class Fakarava {
     public static int createPredator(String name, double weight, int x, int y){
         Predateurs preda = new Predateurs(name,weight,new Point(x, y));
         int emplacement = Case.getCase(preda.getPosition_poisson());
-        Lagune.grille[emplacement].addContenu(((Poissons)preda));
+        Lagune.grille.get(emplacement).addContenu(((Poissons)preda));
         int new_preda = preda.getNumero_poisson();
         return new_preda;
     }
@@ -60,7 +60,7 @@ public class Fakarava {
     public static int createPrey(String name, double weight, int x, int y, int dayVivacity){
         Proies prey = new Proies(name, weight, new Point(x,y), dayVivacity);
         int emplacement = Case.getCase(prey.getPosition_poisson());
-        Lagune.grille[emplacement].addContenu(((Poissons)prey));
+        Lagune.grille.get(emplacement).addContenu(((Poissons)prey));
         int new_prey = prey.getNumero_poisson();
         return new_prey;
     }
@@ -75,14 +75,14 @@ public class Fakarava {
         if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
             for (Case c : Lagune.grille) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                    Lagune.grille[x*Lagune.getN()+y].setIs_passe(true);
+                Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
             }
             return 1;
         }
         if(y == 0 || y == Lagune.getN()){
             for (Case c : Lagune.grille) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                    Lagune.grille[x*Lagune.getN()+y].setIs_passe(true);
+                Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
             }
             return 1;
         }
@@ -133,13 +133,7 @@ public class Fakarava {
         Poissons.setUnite_temps(Poissons.getUnite_temps()+1);
         for (Case c : Lagune.grille) {
             for (Poissons p : c.getContenu()) {
-                if(p.getClass() == Proies.class){ // Réduire ou augmenter la vivacité de chaque Proies
-                    ((Proies)p).ticktock();
-                }
-                if(p.getClass() == Predateurs.class){ // Réduire le poids de chaque Prédateurs
-                    ((Predateurs)p).ticktock();
-                }
-                p.ticktock();                   
+                    p.ticktock();            
             }   
         }
         Proies.se_reproduitprey();
