@@ -129,5 +129,7 @@ public class Camera {
     public static Camera[] getAll_camera(){
         return all_camera;
     }
-    
+    public Integer getId_plongeur_assos(){
+        return id_plongeur_assos;
+    }
 }

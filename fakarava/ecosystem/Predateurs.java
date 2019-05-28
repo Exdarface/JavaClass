@@ -69,7 +69,7 @@ public class Predateurs extends Poissons{
                             index_prey = j;
                         }
                     }
-                    double surva = Math.max(0,list_prey[index_prey].getVivacite_proie()/list_pred[index_predator].getPoids_poisson()- Lagune.force_courant/100 );
+                    double surva = Math.max(0,list_prey[index_prey].getVivacite_proie()/list_pred[index_predator].getPoids_poisson()- (Lagune.getMAX_CURRENT_STRENGTH()/Lagune.nb_passe)/100 );
                     // Calcul de la survie
                     if (rn.selection(surva)) {
                         // Création de la liste des AUTRES Predateurs

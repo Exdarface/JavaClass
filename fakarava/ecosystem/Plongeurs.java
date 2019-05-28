@@ -35,8 +35,15 @@ public class Plongeurs {
     }
 
     public void remplir_log() {
-        // TODO : Finir la méthode
-        
+        Camera.updateChasseCamera();
+        for (Camera c : Camera.getAll_camera()) {
+            if(c.getId_plongeur_assos() == this.getId_plongeur()){
+                String res = "";
+                c.updateCamera();
+                res += "Camera" + c.getId_camera().toString()+":\n"+c.getDescription_poissons()+"\n"+c.getDescription_chasse();
+                this.log += res;
+            }
+        }
     }
 
     public String getLabo() {

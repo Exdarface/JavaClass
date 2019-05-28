@@ -90,14 +90,27 @@ public class Fakarava {
         return 0;
     }
 
+    /**
+     * Creation d'une passe
+     * @param name nom du plongeur
+     * @param labo nom du laboratoire
+     * @return id du plongeur créé
+     */
     public static int createDiver(String name, String labo){
         int new_diver = new Plongeurs(name, labo).getId_plongeur();
         return new_diver;
     }
 
+    /**
+     * Supprime les composants du plongeurs (Emetteur et Camera)
+     * @param diver plongeur associé
+     */
     public static void deleteDiver(int diver){
-        // TODO : Finir la méthode
-        
+        for (Camera c : Camera.getAll_camera()) {
+            if(c.getId_plongeur_assos() == diver){
+                
+            }
+        }
     }
 
     public static void putCamera(int diver, int fishway){
