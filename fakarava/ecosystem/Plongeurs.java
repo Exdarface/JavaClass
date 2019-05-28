@@ -36,6 +36,7 @@ public class Plongeurs {
 
     public void remplir_log() {
         // TODO : Finir la méthode
+        
     }
 
     public String getLabo() {

@@ -25,10 +25,7 @@ public abstract class Lagune {
      */
     public static Case[] grille; // Tableau de Case construisant notre Lagune
 
-    /**
-     * @attribute
-     */
-    protected static Integer force_courant= Lagune.MAX_CURRENT_STRENGTH/nb_passe;
+
 
     //Méthodes de classe : 
 
@@ -52,6 +49,7 @@ public abstract class Lagune {
      * Créé un tableau de Case construisant notre Lagune
      */
     public static void creer_grille() {
+        Lagune.grille = new Case[N*N];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 grille[grille.length] = new Case(i,j);
