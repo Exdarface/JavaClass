@@ -1,10 +1,12 @@
 package fakarava.ecosystem;
 
+import java.util.ArrayList;
+
 public class Camera {
     /**
      * @attribute
      */
-    private String[] description_poissons;
+    private ArrayList<String> description_poissons;
 
     /**
      * @attribute
@@ -14,12 +16,12 @@ public class Camera {
     /**
      * @attribute
      */
-    private String[] description_chasse;
+    private ArrayList<String> description_chasse;
 
     /**
      * @attribute
      */
-    private static Camera[] all_camera;
+    private static ArrayList<Camera> all_camera;
     /**
      * @attribute
      */
@@ -31,7 +33,7 @@ public class Camera {
         for (Case c : Lagune.grille) {
             if(c.getX() == id_camera.getX() && c.getY() == id_camera.getY()){
                 for (Poissons p : c.getContenu()) {
-                    this.description_poissons[this.description_poissons.length] = p.toString();
+                    this.description_poissons.add(p.toString());
                 }
             }
         }          
@@ -41,7 +43,7 @@ public class Camera {
         for (Case c : Lagune.grille) {
             if(c.getX() == id_camera.getX() && c.getY() == id_camera.getY()){
                 for (Poissons p : c.getContenu()) {
-                    this.description_poissons[this.description_poissons.length] = p.toString();
+                    this.description_poissons.add(p.toString());
                 }
             }
         }     
@@ -49,44 +51,44 @@ public class Camera {
 
     public static void updateChasseCamera(){ 
         for (Camera c : Camera.all_camera) {
-            String[] res = {};
+            ArrayList<String> res = new ArrayList<String>();
             for (Case ca : Lagune.grille) {
                 if(ca.getX() == c.getId_camera().getX() && ca.getY() == c.getId_camera().getY()){
                     //Remplir un tableau de Proies et de Predateurs de la Case
-                    Predateurs[] tab_pred = {};
-                    Proies[] tab_prey = {};
+                    ArrayList<Predateurs> tab_pred = new ArrayList<Predateurs>();
+                    ArrayList<Proies> tab_prey = new ArrayList<Proies>();
                     for (Poissons p : ca.getContenu()) {
                         if(p.getClass() == Proies.class){
-                            tab_prey[tab_prey.length] = ((Proies)p);
+                            tab_prey.add((Proies)p);
                         }
                         if(p.getClass() == Predateurs.class){
-                            tab_pred[tab_pred.length] = ((Predateurs)p);
+                            tab_pred.add((Predateurs)p);
                         }
                     }
-                    for (int i = 0; i < ca.getContenu().length; i++) {
-                        if(ca.getContenu()[i].getClass() == Proies.class){
+                    for (int i = 0; i < ca.getContenu().size(); i++) {
+                        if(ca.getContenu().get(i).getClass() == Proies.class){
                             boolean estPresent = false;
-                            for(int j = 0; j < tab_prey.length;j++){
-                                if(ca.getContenu()[i] == tab_prey[j]){
+                            for(int j = 0; j < tab_prey.size();j++){
+                                if(ca.getContenu().get(i) == tab_prey.get(j)){
                                     estPresent = true;
                                 }
                             }
                             if(!estPresent){
-                                res[res.length] = "Le Poissons"+ca.getContenu()[i].getNom_poisson()+"est mort.";
+                                res.add("Le Poissons"+ca.getContenu().get(i).getNom_poisson()+"est mort.");
                             }
                         }
-                        if(ca.getContenu()[i].getClass() == Predateurs.class){
+                        if(ca.getContenu().get(i).getClass() == Predateurs.class){
                             boolean estPresent = false;
-                            for(int j = 0; j < tab_pred.length;j++){
-                                if(ca.getContenu()[i] == tab_pred[j]){
+                            for(int j = 0; j < tab_pred.size();j++){
+                                if(ca.getContenu().get(i) == tab_pred.get(j)){
                                     estPresent = true;
                                 }
                             }
                             if(!estPresent){
-                                res[res.length] = "Le Poissons"+ca.getContenu()[i].getNom_poisson()+"est mort.";
+                                res.add("Le Poissons"+ca.getContenu().get(i).getNom_poisson()+"est mort.");
                                 for (Emetteur e : Emetteur.getAll_emetteur()) {
-                                    if(e.getPreda_assos() == ca.getContenu()[i]){
-                                        Emetteur.removeAll_emetteur(e);
+                                    if(e.getPreda_assos() == ca.getContenu().get(i)){
+                                        Emetteur.getAll_emetteur().remove(e);
                                     }
                                 }
                             }
@@ -103,11 +105,11 @@ public class Camera {
         return "Camera de "+this.id_plongeur_assos+": sur la Case"+this.id_camera;
     }
 
-    public void setDescription_poissons(String[] description_poissons) {
+    public void setDescription_poissons(ArrayList<String> description_poissons) {
         this.description_poissons = description_poissons;
     }
 
-    public String[] getDescription_poissons() {
+    public ArrayList<String> getDescription_poissons() {
         return description_poissons;
     }
 
@@ -119,28 +121,17 @@ public class Camera {
         return id_camera;
     }
 
-    public void setDescription_chasse(String[] description_chasse) {
+    public void setDescription_chasse(ArrayList<String> description_chasse) {
         this.description_chasse = description_chasse;
     }
 
-    public String[] getDescription_chasse() {
+    public ArrayList<String> getDescription_chasse() {
         return description_chasse;
     }
-    public static Camera[] getAll_camera(){
+    public static ArrayList<Camera> getAll_camera(){
         return all_camera;
     }
     public Integer getId_plongeur_assos(){
         return id_plongeur_assos;
-    }
-    public static void removeAll_camera(Camera c){
-        boolean estTrouve = false;
-        for (int i = 0; i < Camera.all_camera.length-1; i++) {
-            if(c == Camera.all_camera[i]){
-                estTrouve = true;
-            }
-            if(c != Camera.all_camera[i] && estTrouve) {
-                Camera.all_camera[i] = Camera.all_camera[i+1];
-            }
-        }
     }
 }

@@ -90,5 +90,4 @@ public abstract class Lagune {
     public static Integer getMAX_CURRENT_STRENGTH() {
         return MAX_CURRENT_STRENGTH;
     }
-
 }

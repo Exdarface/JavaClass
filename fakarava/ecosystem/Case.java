@@ -1,6 +1,8 @@
 package fakarava.ecosystem;
 
-public class Case extends Lagune{
+import java.util.ArrayList;
+
+public class Case extends Lagune {
     /**
      * @attribute
      */
@@ -15,7 +17,7 @@ public class Case extends Lagune{
      * @attribute
      * @associates <{Poissons}>
      */
-    protected Poissons[] contenu;
+    protected ArrayList<Poissons> contenu;
 
     /**
      * @attribute
@@ -52,33 +54,19 @@ public class Case extends Lagune{
     }
 
     /**
-     * Supprime un Poissons de la Case
-     * @param num numéro unique du Poissons
-     */
-    public void removeContenu(int num) {
-        Poissons[] temp = {};
-        for (int i = 0; i < this.getContenu().length; i++) {
-            if(this.getContenu()[i].getNumero_poisson() != num)
-                temp[temp.length] = this.getContenu()[i];
-        }
-        this.setContenu(temp);
-    }
-
-    /**
      * Remplace le contenu d'une Case
      * @param p nouveau contenu
      */
-    public void setContenu(Poissons[] p){
+    public void setContenu(ArrayList<Poissons> p){
         this.contenu = p;
     }
     /**
      * Récupère le contenu d'une Case
      * @return le contenu d'une case
      */
-    public Poissons[] getContenu() {
+    public ArrayList<Poissons> getContenu() {
         return contenu;
     }
-
     /**
      * Transforme l'état une Case, la rendant passe ou non, tout en indentant le nombre de passe de la Lagune
      * @param is_passe Etat de la Case
@@ -117,13 +105,6 @@ public class Case extends Lagune{
      */
     public void setId_camera_assos(Integer id_camera_assos){
         this.id_camera_assos = id_camera_assos;
-    }
-    /**
-     * Ajoute un Poissons dans le contenu d'une Case
-     * @param p Poissons à ajouter
-     */
-	public void addContenu(Poissons p) {
-        contenu[contenu.length] = p;
     }
 
     // Méthodes de classe : 

@@ -1,5 +1,7 @@
 package fakarava.control;
 
+import java.util.ArrayList;
+
 import fakarava.ecosystem.*;
 
 public class Fakarava {
@@ -43,7 +45,7 @@ public class Fakarava {
     public static int createPredator(String name, double weight, int x, int y){
         Predateurs preda = new Predateurs(name,weight,new Point(x, y));
         int emplacement = Case.getCase(preda.getPosition_poisson());
-        Lagune.grille.get(emplacement).addContenu(((Poissons)preda));
+        Lagune.grille.get(emplacement).getContenu().add((Poissons)preda);
         int new_preda = preda.getNumero_poisson();
         return new_preda;
     }
@@ -60,7 +62,7 @@ public class Fakarava {
     public static int createPrey(String name, double weight, int x, int y, int dayVivacity){
         Proies prey = new Proies(name, weight, new Point(x,y), dayVivacity);
         int emplacement = Case.getCase(prey.getPosition_poisson());
-        Lagune.grille.get(emplacement).addContenu(((Poissons)prey));
+        Lagune.grille.get(emplacement).getContenu().add((Poissons)prey);
         int new_prey = prey.getNumero_poisson();
         return new_prey;
     }
@@ -107,12 +109,12 @@ public class Fakarava {
     public static void deleteDiver(int diver){
         for (Camera c : Camera.getAll_camera()) {
             if(c.getId_plongeur_assos() == diver){
-                Camera.removeAll_camera(c);
+                Camera.getAll_camera().remove(c);
             }
         }
         for(Emetteur e : Emetteur.getAll_emetteur()){
             if(e.getId_plongeur_assos() == diver){
-                Emetteur.removeAll_emetteur(e);
+                Emetteur.getAll_emetteur().remove(e);
             }
         }
     }
@@ -155,15 +157,15 @@ public class Fakarava {
             Fakarava.end = true;
         }
         //Itération 2 : Plus de Proies dans la Lagune
-        Proies[] list_prey = {};
+        ArrayList<Proies> list_prey = new ArrayList<Proies>();
         for (Case c : Lagune.grille) {
             for (Poissons p : c.getContenu()) {
                 if(p.getClass() == Proies.class){
-                    list_prey[list_prey.length] = ((Proies)p);
+                    list_prey.add((Proies)p);
                 }
             }
         }
-        if(list_prey.length == 0){
+        if(list_prey.size() == 0){
             Fakarava.end = true;
         }
     }
