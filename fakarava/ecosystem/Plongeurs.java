@@ -40,7 +40,7 @@ public class Plongeurs {
             if(c.getId_plongeur_assos() == this.getId_plongeur()){
                 String res = "";
                 c.updateCamera();
-                res += "Camera" + c.getId_camera().toString()+":\n"+c.getDescription_poissons()+"\n"+c.getDescription_chasse();
+                res += "Camera" + c.getPos_camera().toString()+":\n"+c.getDescription_poissons()+"\n"+c.getDescription_chasse();
                 this.log += res;
             }
         }
