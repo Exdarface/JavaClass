@@ -15,6 +15,10 @@ public class Plongeurs {
     /**
      * @attribute
      */
+    private static Integer next_id_plongeur = 1;
+    /**
+     * @attribute
+     */
     private String log;
 
     /**
@@ -26,6 +30,8 @@ public class Plongeurs {
     public Plongeurs(String name, String labo) {
         this.nom = name;
         this.labo = labo;
+        this.id_plongeur = next_id_plongeur;
+        next_id_plongeur++;
     }
 
     // Méthodes d'instance:

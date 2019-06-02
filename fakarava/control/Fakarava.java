@@ -1,8 +1,16 @@
 package fakarava.control;
 
-import java.util.ArrayList;
+import fakarava.ecosystem.Camera;
+import fakarava.ecosystem.Case;
+import fakarava.ecosystem.Emetteur;
+import fakarava.ecosystem.Lagune;
+import fakarava.ecosystem.Plongeurs;
+import fakarava.ecosystem.Point;
+import fakarava.ecosystem.Poissons;
+import fakarava.ecosystem.Predateurs;
+import fakarava.ecosystem.Proies;
 
-import fakarava.ecosystem.*;
+import java.util.ArrayList;
 
 public class Fakarava {
     // Champs :
@@ -125,7 +133,7 @@ public class Fakarava {
         for (Case c : Lagune.grille) {
             if(Case.getCase(new Point(c.getX(),c.getY())) == fishway){
                 for (Poissons p : c.getContenu()) {
-                    if(p.getClass() == Proies.class){
+                    if(p.getClass() == Predateurs.class){
                         new Emetteur(((Predateurs)p), diver);
                     }
                 }

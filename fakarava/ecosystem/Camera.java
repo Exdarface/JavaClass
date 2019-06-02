@@ -39,13 +39,10 @@ public class Camera {
     // Constructeurs : 
     public Camera(Point pos_camera, Integer id_plongeur_assos) {
         this.pos_camera = pos_camera;
-        for (Case c : Lagune.grille) {
-            if(c.getX() == pos_camera.getX() && c.getY() == pos_camera.getY()){
-                for (Poissons p : c.getContenu()) {
-                    this.description_poissons.add(p.toString());
-                }
-            }
-        }
+        this.description_poissons = new ArrayList<String>();
+        this.description_chasse = new ArrayList<String>();
+        for(Poissons p : Lagune.getGrille().get(Case.getCase(pos_camera)).getContenu())
+            this.description_poissons.add(p.toString());
         this.id_camera = Camera.next_id_camera;
         Camera.next_id_camera++;
         this.id_plongeur_assos = id_plongeur_assos;
