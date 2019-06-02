@@ -73,7 +73,7 @@ public class Predateurs extends Poissons{
                     }
                     double surva = Math.max(0,list_prey.get(index_prey).getVivacite_proie()/list_pred.get(index_predator).getPoids_poisson()- (Lagune.getMAX_CURRENT_STRENGTH()/Lagune.nb_passe)/100 );
                     // Calcul de la survie
-                    if (rn.selection(surva)) {
+                    if (Lagune.getRn().selection(surva)) {
                         // Création de la liste des AUTRES Predateurs
                         ArrayList<Predateurs> list_mordu = new ArrayList<Predateurs>();
                         for(int i =0;i<list_pred.size();i++){
@@ -81,7 +81,7 @@ public class Predateurs extends Poissons{
                                 list_mordu.add(list_pred.get(i));
                         
                         }
-                        int index_mordre = rn.who(list_mordu.size()); // Attaque aléatoire
+                        int index_mordre =Lagune.getRn().who(list_mordu.size()); // Attaque aléatoire
                         double q = list_mordu.get(index_mordre).getPoids_poisson()/BITE_FACTOR; // Dégats de l'attaque
                         // Mort du Predateurs si son poids est inférieur à q
                         if (list_mordu.get(index_mordre).getPoids_poisson() - q <= 0) {
