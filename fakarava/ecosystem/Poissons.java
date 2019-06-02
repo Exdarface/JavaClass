@@ -135,9 +135,11 @@ public abstract class Poissons {
         }
         return 0;
     }
+
     /**
      * Donne toutes les informations du Poisson pointé
      */
+    @Override
     public String toString(){
         return this.numero_poisson+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
         this.age_poisson+","+this.position_poisson.toString()+"\n";
@@ -167,13 +169,14 @@ public abstract class Poissons {
     public static Integer getUnite_temps() {
         return unite_temps;
     }
+
     // Méthodes implémentées :
 
     /**
      * Augmente l'âge de chaque Poisson de 1
      */
     public void ticktock() {
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             for (Poissons p : c.getContenu()) {
                 p.age_poisson++;
             }

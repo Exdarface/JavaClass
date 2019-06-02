@@ -36,7 +36,7 @@ public class Predateurs extends Poissons{
      * Fait chasser tous les Predateurs de la Lagune
      */
     public static void chasse() {
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             if(c.getIs_passe()){ // Si la case est une passe
                 ArrayList<Predateurs> list_pred = new ArrayList<Predateurs>();
                 ArrayList<Proies> list_prey = new ArrayList<Proies>();
@@ -126,7 +126,7 @@ public class Predateurs extends Poissons{
      */
     public static void se_reproduitpred() {
         if(unite_temps%PREDATOR_CLONE_TIME ==0){
-            for (Case c : Lagune.grille) {
+            for (Case c : Lagune.getGrille()) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Predateurs.class){
                         c.getContenu().add(new Predateurs(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson()));
@@ -177,7 +177,7 @@ public class Predateurs extends Poissons{
     public void ticktock() {
         this.setPoids_poisson(this.getPoids_poisson()-1); // Réduire le poids
                     if(this.getPoids_poisson() == 0){// Tuer si son poids atteint 0
-                        for (Case c : Lagune.grille) {
+                        for (Case c : Lagune.getGrille()) {
                             if(c.getX() == this.getPosition_poisson().getX() && c.getY() == this.getPosition_poisson().getY()){
                                 c.getContenu().remove(this); // Tuer en l'enlevant de la liste de la Case
                             }

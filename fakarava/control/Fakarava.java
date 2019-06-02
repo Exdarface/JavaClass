@@ -11,6 +11,7 @@ import fakarava.ecosystem.Predateurs;
 import fakarava.ecosystem.Proies;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Fakarava {
     // Champs :
@@ -54,7 +55,7 @@ public class Fakarava {
     public static int createPredator(String name, double weight, int x, int y){
         Predateurs preda = new Predateurs(name,weight,new Point(x, y));
         int emplacement = Case.getCase(preda.getPosition_poisson());
-        Lagune.grille.get(emplacement).getContenu().add((Poissons)preda);
+        Lagune.getGrille().get(emplacement).getContenu().add((Poissons)preda);
         int new_preda = preda.getNumero_poisson();
         return new_preda;
     }
@@ -71,7 +72,7 @@ public class Fakarava {
     public static int createPrey(String name, double weight, int x, int y, int dayVivacity){
         Proies prey = new Proies(name, weight, new Point(x,y), dayVivacity);
         int emplacement = Case.getCase(prey.getPosition_poisson());
-        Lagune.grille.get(emplacement).getContenu().add((Poissons)prey);
+        Lagune.getGrille().get(emplacement).getContenu().add((Poissons)prey);
         int new_prey = prey.getNumero_poisson();
         return new_prey;
     }
@@ -84,15 +85,15 @@ public class Fakarava {
      */
     public static int createFishway(int x, int y){
         if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
-            for (Case c : Lagune.grille) {
+            for (Case c : Lagune.getGrille()) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
+                Lagune.getGrille().get(x*Lagune.getN()+y).setIs_passe(true);
             }
         }
         if(y == 0 || y == Lagune.getN()){
-            for (Case c : Lagune.grille) {
+            for (Case c : Lagune.getGrille()) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
+                Lagune.getGrille().get(x*Lagune.getN()+y).setIs_passe(true);
             }
         }
         return x*Lagune.getN()+y;
@@ -131,7 +132,7 @@ public class Fakarava {
     }
 
     public static void putTransmitters(int diver, int fishway){
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             if(Case.getCase(new Point(c.getX(),c.getY())) == fishway){
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Predateurs.class){
@@ -147,17 +148,16 @@ public class Fakarava {
      */
     public static void clockForward(){
         Poissons.setUnite_temps(Poissons.getUnite_temps()+1);
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             for (Poissons p : c.getContenu()) {
                     p.ticktock();            
             }   
         }
         Proies.se_reproduitprey();
         Predateurs.se_reproduitpred();
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             if(c.getContenu().size() != 0){
                 for(int i =0; i< c.getContenu().size();i++) {
-                    Point po = c.getContenu().get(i).getPosition_poisson();
                     int reu = c.getContenu().get(i).se_deplace();
                     if(reu == 1){
                         Case.getCasec(c.getContenu().get(i).getPosition_poisson()).getContenu().add(c.getContenu().get(i));
@@ -179,7 +179,7 @@ public class Fakarava {
         }
         //Itération 2 : Plus de Proies dans la Lagune
         ArrayList<Proies> list_prey = new ArrayList<Proies>();
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             for (Poissons p : c.getContenu()) {
                 if(p.getClass() == Proies.class){
                     list_prey.add((Proies)p);
@@ -192,9 +192,12 @@ public class Fakarava {
     }
 
     public static String[] spyReport(){
+        ArrayList<String> res = new ArrayList<String>();
         for(Case c : Lagune.getGrille()){
             for(int i =0;i<c.getContenu().size();i++){
+                res.add(c.getContenu().get(i).toString());
             }
         }
+        return Arrays.copyOf(res.toArray(new String[0]),res.size());
     }
 }

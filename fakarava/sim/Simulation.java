@@ -1,5 +1,7 @@
 package fakarava.sim;
 
+import java.util.Arrays;
+
 import fakarava.control.Fakarava;
 
 public class Simulation {
@@ -12,6 +14,11 @@ public class Simulation {
         preyCloneTime = 5;
         Fakarava.init(biteFactor, maxCurrentStrength, maxDensity, n, predatorCloneTime,
         preyCloneTime, null);
+        boolean verbose = false;
+        for (String s : args) {
+            if(s == "verbose" || s == "-v")
+                verbose = true;
+        }
         int jojo = Fakarava.createPrey("Mérou", 3.0, 1, 2, 99);
         int lola = Fakarava.createPrey("Poisson Lune", 1.0, 0, 1, 90);
         int alfred = Fakarava.createPrey("Poisson Perroquet", 2.0, 0, 2, 51);
@@ -26,8 +33,8 @@ public class Simulation {
         while (!Fakarava.end){
             Fakarava.clockForward();
             time++;
-            //if (verbose)
-                //System.out.println(Arrays.toString(Fakarava.spyReport())+"\n\n");
+            if (verbose)
+                System.out.println(Arrays.toString(Fakarava.spyReport())+"\n\n");
         }
         System.out.println(time);
     }

@@ -54,7 +54,7 @@ public class Camera {
      * Mets à jour la description d'une Camera
      */
     public void updateCamera(){
-        for (Case c : Lagune.grille) {
+        for (Case c : Lagune.getGrille()) {
             if(c.getX() == pos_camera.getX() && c.getY() == pos_camera.getY()){
                 for (Poissons p : c.getContenu()) {
                     this.description_poissons.add(p.toString());
@@ -135,7 +135,7 @@ public class Camera {
     public static void updateChasseCamera(){ 
         for (Camera c : Camera.all_camera) {
             ArrayList<String> res = new ArrayList<String>();
-            for (Case ca : Lagune.grille) {
+            for (Case ca : Lagune.getGrille()) {
                 if(ca.getX() == c.getPos_camera().getX() && ca.getY() == c.getPos_camera().getY()){
                     //Remplir un tableau de Proies et de Predateurs de la Case
                     ArrayList<Predateurs> tab_pred = new ArrayList<Predateurs>();

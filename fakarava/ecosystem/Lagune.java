@@ -25,14 +25,12 @@ public abstract class Lagune {
     /**
      * @attribute
      */
-    public static ArrayList<Case> grille; // Tableau de Case construisant notre Lagune
+    protected static ArrayList<Case> grille; // Tableau de Case construisant notre Lagune
     
     /**
      * @attribute
      */
     protected static Random rn;
-
-
 
     //Méthodes de classe : 
 
@@ -59,7 +57,7 @@ public abstract class Lagune {
         Lagune.grille = new ArrayList<Case>();
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                Lagune.grille.add(new Case(i,j));
+                Lagune.getGrille().add(new Case(i,j));
             }
         }
     }
