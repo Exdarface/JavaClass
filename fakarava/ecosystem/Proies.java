@@ -56,7 +56,7 @@ public class Proies extends Poissons{
             for (Case c : Lagune.grille) {
                 for (Poissons p : c.getContenu()) {
                     if(p.getClass() == Proies.class){
-                        c.getContenu().add(new Proies(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson(),rn.nextInt(99)+1));
+                        c.getContenu().add(new Proies(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson(),((Proies)p).getVivacite_proie()));
                     }
                 }
             }
