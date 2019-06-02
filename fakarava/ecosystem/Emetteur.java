@@ -16,7 +16,7 @@ public class Emetteur {
     /**
      * @attribute
      */
-    private ArrayList<String> description_predateur;
+    private String description_predateur;
 
     /**
      * @attribute
@@ -33,32 +33,15 @@ public class Emetteur {
      */
     private static ArrayList<Emetteur> all_emetteur;
 
-    public Emetteur(ArrayList<String> description_predateur,Predateurs pr,Integer id_plongeur) {
+    public Emetteur(Predateurs pr,Integer id_plongeur) {
         this.id_emetteur = next_id_emetteur;
-        this.description_predateur = description_predateur;
         this.preda_assos = pr;
+        this.description_predateur = this.preda_assos.toString();
         this.id_plongeur_assos = id_plongeur;
         next_id_emetteur++;
     }
     public void updateEmetteur(){
-        ArrayList<String> tab = new ArrayList<String>();
-        tab.add(preda_assos.getNom_poisson());
-        tab.add(preda_assos.getNumero_poisson().toString());
-        tab.add(preda_assos.getAge_poisson().toString());
-        tab.add(String.valueOf(preda_assos.getPoids_poisson()));
-        tab.add(preda_assos.getPosition_poisson().toString());
-
-        this.description_predateur = tab;
-    }
-    public static Emetteur add_emetteur(Plongeurs pl,Predateurs pr) {
-        ArrayList<String> tab = new ArrayList<String>();
-        tab.add(pr.getNom_poisson());
-        tab.add(pr.getNumero_poisson().toString());
-        tab.add(pr.getAge_poisson().toString());
-        tab.add(String.valueOf(pr.getPoids_poisson()));
-        tab.add(pr.getPosition_poisson().toString());
-        return new Emetteur(tab,pr,pl.getId_plongeur());
-
+        this.setDescription_predateur(this.preda_assos.toString());
     }
     @Override
     public String toString(){
@@ -77,11 +60,11 @@ public class Emetteur {
         return id_emetteur;
     }
 
-    public void setDescription_predateur(ArrayList<String> description_predateur) {
+    public void setDescription_predateur(String description_predateur) {
         this.description_predateur = description_predateur;
     }
 
-    public ArrayList<String> getDescription_predateur() {
+    public String getDescription_predateur() {
         return description_predateur;
     }
 

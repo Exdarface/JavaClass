@@ -71,7 +71,7 @@ public class Fakarava {
      * Creation d'une passe
      * @param x coordonnée x de la Case se transformant en passe
      * @param y coordonnée y de la Case se transformant en passe
-     * @return 1 si la passe à été crée, 0 si elle ne l'as pas été
+     * @return La position absolue dans la grille de la Lagune
      */
     public static int createFishway(int x, int y){
         if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
@@ -79,16 +79,14 @@ public class Fakarava {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
                 Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
             }
-            return 1;
         }
         if(y == 0 || y == Lagune.getN()){
             for (Case c : Lagune.grille) {
                 if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
                 Lagune.grille.get(x*Lagune.getN()+y).setIs_passe(true);
             }
-            return 1;
         }
-        return 0;
+        return x*Lagune.getN()+y;
     }
 
     /**
@@ -120,12 +118,19 @@ public class Fakarava {
     }
 
     public static void putCamera(int diver, int fishway){
-        // TODO : Finir la méthode
-
+        new Camera(new Point(fishway/Lagune.getN(),fishway%Lagune.getN()),diver);
     }
 
     public static void putTransmitters(int diver, int fishway){
-        // TODO : Finir la méthode
+        for (Case c : Lagune.grille) {
+            if(Case.getCase(new Point(c.getX(),c.getY())) == fishway){
+                for (Poissons p : c.getContenu()) {
+                    if(p.getClass() == Proies.class){
+                        new Emetteur(((Predateurs)p), diver);
+                    }
+                }
+            }
+        }
 
     }
     /**

@@ -16,6 +16,15 @@ public class Camera {
     /**
      * @attribute
      */
+    private int id_camera;
+
+    /**
+     * @attribute
+     */
+    private static int next_id_camera=1;
+    /**
+     * @attribute
+     */
     private ArrayList<String> description_chasse;
 
     /**
@@ -28,7 +37,7 @@ public class Camera {
     private Integer id_plongeur_assos;
 
     // Constructeurs : 
-    public Camera(Point pos_camera) {
+    public Camera(Point pos_camera, Integer id_plongeur_assos) {
         this.pos_camera = pos_camera;
         for (Case c : Lagune.grille) {
             if(c.getX() == pos_camera.getX() && c.getY() == pos_camera.getY()){
@@ -36,7 +45,10 @@ public class Camera {
                     this.description_poissons.add(p.toString());
                 }
             }
-        }          
+        }
+        this.id_camera = Camera.next_id_camera;
+        Camera.next_id_camera++;
+        this.id_plongeur_assos = id_plongeur_assos;
     }
 
     // Méthodes d'instance : 
@@ -52,6 +64,14 @@ public class Camera {
                 }
             }
         }     
+    }
+
+    /**
+     * Renvoie l'id de la Camera pointée
+     * @return l'id de la Camera pointée
+     */
+    public int getId_camera(){
+        return this.id_camera;
     }
 
     /**

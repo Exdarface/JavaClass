@@ -26,7 +26,7 @@ public class Predateurs extends Poissons{
      */
     @Override
     public String toString() {
-        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
+        return "Predateurs"+this.getNumero_poisson()+":"+this.getNom_poisson()+","+
             this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
     }
 
