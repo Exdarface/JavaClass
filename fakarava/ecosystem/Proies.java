@@ -54,9 +54,14 @@ public class Proies extends Poissons{
 
         if(unite_temps%PREY_CLONE_TIME == 0){
             for (Case c : Lagune.grille) {
-                for (Poissons p : c.getContenu()) {
-                    if(p.getClass() == Proies.class){
-                        c.getContenu().add(new Proies(p.getNom_poisson(),p.getPoids_poisson(),p.getPosition_poisson(),((Proies)p).getVivacite_proie()));
+                if(c.getContenu().size() != 0){
+                    for(int i = 0;i<c.getContenu().size();i++) {
+                        if(c.getContenu().get(i).getClass() == Proies.class){
+                            c.getContenu().add(new Proies(c.getContenu().get(i).getNom_poisson(),
+                                                          c.getContenu().get(i).getPoids_poisson(),
+                                                          c.getContenu().get(i).getPosition_poisson(),
+                                                          ((Proies)c.getContenu().get(i)).getVivacite_proie()));
+                        }
                     }
                 }
             }

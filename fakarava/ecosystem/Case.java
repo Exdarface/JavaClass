@@ -121,5 +121,10 @@ public class Case extends Lagune {
             res = p.getX()*Lagune.getN()+p.getY();
         }
         return res.intValue();
-    }     
+    }
+    
+    public static Case getCasec(Point p){
+        int pos = Case.getCase(p);
+        return Lagune.getGrille().get(pos);
+    }
 }

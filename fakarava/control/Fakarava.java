@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Fakarava {
     // Champs :
     private static boolean isDay= true;
-    public static boolean end = false;
+    public static boolean end;
     
     // Méthodes de classe :
 
@@ -39,6 +39,7 @@ public class Fakarava {
         Lagune.creer_grille();
         Lagune.setRn(fakarava.ecosystem.Random.getARandom());
         Fakarava.end = false;
+        
 
     }
     
@@ -154,8 +155,15 @@ public class Fakarava {
         Proies.se_reproduitprey();
         Predateurs.se_reproduitpred();
         for (Case c : Lagune.grille) {
-            for (Poissons p : c.getContenu()) {
-                p.se_deplace();
+            if(c.getContenu().size() != 0){
+                for(int i =0; i< c.getContenu().size();i++) {
+                    Point po = c.getContenu().get(i).getPosition_poisson();
+                    int reu = c.getContenu().get(i).se_deplace();
+                    if(reu == 1){
+                        Case.getCasec(c.getContenu().get(i).getPosition_poisson()).getContenu().add(c.getContenu().get(i));
+                        c.getContenu().remove(c.getContenu().get(i)); 
+                    }
+                }
             }
         }
         if(Fakarava.isDay == true){
@@ -184,8 +192,9 @@ public class Fakarava {
     }
 
     public static String[] spyReport(){
-        // TODO : Finir la méthode
-        String[] string = {};
-        return string;
+        for(Case c : Lagune.getGrille()){
+            for(int i =0;i<c.getContenu().size();i++){
+            }
+        }
     }
 }

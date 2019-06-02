@@ -6,7 +6,7 @@ public class Simulation {
     public static void main(String[] args) {
         int biteFactor = 10,
         maxCurrentStrength = 20,
-        maxDensity = 3,
+        maxDensity = 8,
         n = 3,
         predatorCloneTime = 10,
         preyCloneTime = 5;
@@ -23,7 +23,7 @@ public class Simulation {
         Fakarava.putCamera(enzo, p1);
         Fakarava.putTransmitters(enzo, p1);
         long time = 1;
-        while(!Fakarava.end){
+        while (!Fakarava.end){
             Fakarava.clockForward();
             time++;
             //if (verbose)

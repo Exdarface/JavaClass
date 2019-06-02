@@ -2,7 +2,12 @@ package fakarava.sim;
 
 import fakarava.control.Fakarava;
 
-import fakarava.ecosystem.Plongeurs;
+import fakarava.ecosystem.Case;
+import fakarava.ecosystem.Lagune;
+import fakarava.ecosystem.Poissons;
+import fakarava.ecosystem.Proies;
+
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
@@ -14,6 +19,15 @@ public class Test {
         preyCloneTime = 5;
         Fakarava.init(biteFactor, maxCurrentStrength, maxDensity, n, predatorCloneTime,
         preyCloneTime, null);
-        System.out.println(new Plongeurs("Eric","Washington").getId_plongeur());
+        int jojo = Fakarava.createPrey("Mérou", 3.0, 1, 2, 99);
+        ArrayList<Proies> list_prey = new ArrayList<Proies>();
+        for (Case c : Lagune.grille) {
+            for (Poissons p : c.getContenu()) {
+                if(p.getClass() == Proies.class){
+                    list_prey.add((Proies)p);
+                }
+            }
+        }
+        System.out.println(list_prey.size());
     }
 }

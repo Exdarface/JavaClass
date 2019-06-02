@@ -125,10 +125,15 @@ public abstract class Poissons {
     /**
      * Déplace le Poissons pointé dans une Case adjacente à la Case d'origine
      */
-    public void se_deplace(){
+    public int se_deplace(){
         int[] new_pos = Lagune.getRn().move((int) this.getPosition_poisson().getX(),(int) this.getPosition_poisson().getY() , Lagune.N);
-        if(new_pos[0] < Lagune.N && new_pos[1] < Lagune.N)
+        if(new_pos[0] < Lagune.N && new_pos[1] < Lagune.N){
+            //Case.getCasec(this.getPosition_poisson()).getContenu().remove(this);
             this.setPosition_poisson(new Point(new_pos[0],new_pos[1]));
+            //Case.getCasec(new Point(new_pos[0],new_pos[1])).getContenu().add(this);
+            return 1;
+        }
+        return 0;
     }
     /**
      * Donne toutes les informations du Poisson pointé
