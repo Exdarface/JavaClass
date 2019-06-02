@@ -1,6 +1,6 @@
 package fakarava.sim;
 
-import fakarava.control.*;
+import fakarava.control.Fakarava;
 
 public class Simulation {
     public static void main(String[] args) {
@@ -30,6 +30,5 @@ public class Simulation {
                 //System.out.println(Arrays.toString(Fakarava.spyReport())+"\n\n");
         }
         System.out.println(time);
-
     }
 }

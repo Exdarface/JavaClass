@@ -1,5 +1,6 @@
 package fakarava.ecosystem;
 
+
 public class Point extends java.awt.Point {
     /**
      * @attribute

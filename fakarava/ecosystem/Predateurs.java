@@ -49,6 +49,9 @@ public class Predateurs extends Poissons{
                         list_prey.add((Proies)p);
                     }
                 }
+                if(list_pred.size()==0 || list_prey.size() == 0){
+                    break;
+                }
                 for (int k = 0; k < list_pred.size();k++) { // Pour tous les Predateurs présents
                     double poids_predator = list_pred.get(0).getPoids_poisson();
                     int index_predator = 0;

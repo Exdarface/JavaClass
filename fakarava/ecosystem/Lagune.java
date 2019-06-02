@@ -26,6 +26,11 @@ public abstract class Lagune {
      * @attribute
      */
     public static ArrayList<Case> grille; // Tableau de Case construisant notre Lagune
+    
+    /**
+     * @attribute
+     */
+    protected static Random rn;
 
 
 
@@ -89,5 +94,17 @@ public abstract class Lagune {
      */
     public static Integer getMAX_CURRENT_STRENGTH() {
         return MAX_CURRENT_STRENGTH;
+    }
+
+    public static void setRn(Random rn) {
+        Lagune.rn = rn;
+    }
+
+    public static Random getRn() {
+        return rn;
+    }
+
+    public static ArrayList<Case> getGrille() {
+        return grille;
     }
 }

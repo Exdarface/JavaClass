@@ -1,8 +1,7 @@
 package fakarava.control;
 
-import java.util.ArrayList;
-
 import fakarava.ecosystem.*;
+import java.util.ArrayList;
 
 public class Fakarava {
     // Champs :
@@ -29,8 +28,8 @@ public class Fakarava {
         Predateurs.setPREDATOR_CLONE_TIME(predatorCloneTime);
         Proies.setPREY_CLONE_TIME(preyCloneTime);
         Lagune.creer_grille();
-        Random rn = Random.getARandom();
-        Fakarava.end = true;
+        Lagune.setRn(new getARandom());
+        Fakarava.end = false;
 
     }
     
