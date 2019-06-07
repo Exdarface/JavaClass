@@ -19,10 +19,10 @@ public class Predateurs extends Poissons{
         super(nom,poids_poisson,position_poisson);
     }
 
-    //Méthodes d'Instances : 
+    //Methodes d'Instances : 
 
     /**
-     * Donne toutes les informations du Predateurs pointé
+     * Donne toutes les informations du Predateurs pointee
      */
     @Override
     public String toString() {
@@ -38,7 +38,6 @@ public class Predateurs extends Poissons{
     public static void chasse() {
         for (Case c : Lagune.getGrille()) {
             if(c.getIs_passe()){ // Si la case est une passe
-                System.out.println("La chasse commence!");
                 ArrayList<Predateurs> list_pred = new ArrayList<Predateurs>();
                 ArrayList<Proies> list_prey = new ArrayList<Proies>();
                 // Remplissage d'un tableau de Predateurs et de Proies de c
@@ -53,13 +52,15 @@ public class Predateurs extends Poissons{
                 if(list_pred.size()==0 || list_prey.size() == 0){
                     break;
                 }
-                for (int k = 0; k < list_pred.size();k++) { // Pour tous les Predateurs présents
+                else
+                    System.out.println("La chasse commence!");
+                for (int k = 0; k < list_pred.size();k++) { // Pour tous les Predateurs presents
                     if(list_pred.size()==0 || list_prey.size() == 0){
                         break;
                     }
                     double poids_predator = list_pred.get(0).getPoids_poisson();
                     int index_predator = 0;
-                    // Récupération du Predateurs le plus gros
+                    // Recuperation du Predateurs le plus gros
                     for (int i =0; i < list_pred.size(); i++) {
                         if(list_pred.get(i).getPoids_poisson() > poids_predator){
                             poids_predator = list_pred.get(i).getPoids_poisson();
@@ -68,7 +69,7 @@ public class Predateurs extends Poissons{
                     }
                     int viv = list_prey.get(0).getVivacite_proie();
                     int index_prey = 0;
-                    // Récupération de la Proies la moins vivace
+                    // Recuperation de la Proies la moins vivace
                     for (int j = 0; j < list_prey.size(); j++) {
                         if(list_prey.get(j).getVivacite_proie() < viv){
                             viv = list_prey.get(j).getVivacite_proie();
@@ -79,42 +80,42 @@ public class Predateurs extends Poissons{
                                               - ((double)(Lagune.getMAX_CURRENT_STRENGTH()/Lagune.getNb_passe())/100) );
                     // Calcul de la survie
                     if (Lagune.getRn().selection(surva)) {
-                        // Création de la liste des AUTRES Predateurs
-                        System.out.println("L'attaque a �chou�");
+                        // Creation de la liste des AUTRES Predateurs
+                        System.out.println("L'attaque a echouee");
                         ArrayList<Predateurs> list_mordu = new ArrayList<Predateurs>();
                         for(int i =0;i<list_pred.size();i++){
-                            if(i!=index_predator) // Si ce n'est pas celui attaqué
+                            if(i!=index_predator) // Si ce n'est pas celui attaque
                                 list_mordu.add(list_pred.get(i));
                         
                         }
                         if(list_mordu.size() == 0)
                             break;
-                        int index_mordre =Lagune.getRn().who(list_mordu.size()); // Attaque aléatoire
-                        System.out.println("Predateur attaqu� : "+list_mordu.get(index_mordre).toString());
-                        double q = list_mordu.get(index_mordre).getPoids_poisson()/BITE_FACTOR; // Dégats de l'attaque
-                        // Mort du Predateurs si son poids est inférieur à q
+                        int index_mordre =Lagune.getRn().who(list_mordu.size()); // Attaque aleatoire
+                        System.out.println("Predateur cible : "+list_mordu.get(index_mordre).getNumero_poisson());
+                        double q = list_mordu.get(index_mordre).getPoids_poisson()/BITE_FACTOR; // Degats de l'attaque
+                        // Mort du Predateurs si son poids est inferieur à q
                         if (list_mordu.get(index_mordre).getPoids_poisson() - q <= 0) {
                             c.getContenu().remove(list_mordu.get(index_mordre));
                             list_pred.remove(list_mordu.get(index_mordre));
-                            System.out.println("Le Predateur "+list_mordu.get(index_mordre).getNumero_poisson()+"est mort");
+                            System.out.println("Le Predateur "+list_mordu.get(index_mordre).getNumero_poisson()+" est mort");
                         }
-                        // Perte de poids du Predateurs si son poids est supérieur à q
+                        // Perte de poids du Predateurs si son poids est superieur à q
                         else{
                             list_mordu.get(index_mordre).setPoids_poisson(list_mordu.get(index_mordre).getPoids_poisson()-q);
-                            System.out.println("Le Predateur "+list_mordu.get(index_mordre).getNumero_poisson()+"a perdu du poids");
+                            System.out.println("Le Predateur "+list_mordu.get(index_mordre).getNumero_poisson()+" a perdu du poids");
                         }
                     }
                     // Mort de la Proie
                     else{
-                        System.out.println("L'attaque a r�ussi");
-                        System.out.println("La Proie"+list_pred.get(index_predator).getNumero_poisson()+"est morte");
+                        System.out.println("L'attaque a reussi");
+                        System.out.println("La Proie"+list_pred.get(index_predator).getNumero_poisson()+" est morte");
                         list_pred.get(index_predator).setPoids_poisson(list_pred.get(index_predator).getPoids_poisson()+list_prey.get(index_prey).getPoids_poisson());
                         Proies kprey = list_prey.get(index_prey);
                         c.getContenu().remove(kprey);
                         list_prey.remove(kprey);
                     }
                 }
-                // Mise à jour des Poissons présents dans la Case en fin de chasse
+                // Mise à jour des Poissons presents dans la Case en fin de chasse
                 ArrayList<Poissons> list_final = new ArrayList<Poissons>();
                 for (Predateurs p : list_pred) {
                     list_final.add((Poissons)p);
@@ -149,16 +150,16 @@ public class Predateurs extends Poissons{
     }
 
     /**
-     * Transforme le délai de reproduction des Predateurs
-     * @param PREDATOR_CLONE_TIME nouveau délai de reproduction
+     * Transforme le delai de reproduction des Predateurs
+     * @param PREDATOR_CLONE_TIME nouveau delai de reproduction
      */
     public static void setPREDATOR_CLONE_TIME(Integer PREDATOR_CLONE_TIME) {
         Predateurs.PREDATOR_CLONE_TIME = PREDATOR_CLONE_TIME;
     }
 
     /**
-     * Récupère le délai de reproduction des Predateurs
-     * @return délai de reproduction des Predateurs
+     * Recupere le delai de reproduction des Predateurs
+     * @return delai de reproduction des Predateurs
      */
     public static Integer getPREDATOR_CLONE_TIME() {
         return PREDATOR_CLONE_TIME;
@@ -173,21 +174,21 @@ public class Predateurs extends Poissons{
     }
 
     /**
-     * Récupère la puissance de la morsure des Predateurs
+     * Recupere la puissance de la morsure des Predateurs
      * @return puissance de la morsure des Predateurs
      */
     public static Integer getBITE_FACTOR() {
         return BITE_FACTOR;
     }
 
-    // Méthodes implémentées :
+    // Methodes implementees :
 
     /**
-     * Réduit le poids de 1 du Prédateur pointé
+     * Reduit le poids de 1 du Predateur pointee
      */
     @Override
     public void ticktock() {
-        this.setPoids_poisson(this.getPoids_poisson()-1); // Réduire le poids
+        this.setPoids_poisson(this.getPoids_poisson()-1); // Reduire le poids
                     if(this.getPoids_poisson() == 0){// Tuer si son poids atteint 0
                         for (Case c : Lagune.getGrille()) {
                             if(c.getX() == this.getPosition_poisson().getX() && c.getY() == this.getPosition_poisson().getY()){

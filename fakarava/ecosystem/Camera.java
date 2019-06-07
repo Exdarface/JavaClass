@@ -30,12 +30,13 @@ public class Camera {
     /**
      * @attribute
      */
-    private static ArrayList<Camera> all_camera;
+    private static ArrayList<Camera> all_camera = new ArrayList<Camera>();
+    
     /**
      * @attribute
      */
     private Integer id_plongeur_assos;
-
+    
     // Constructeurs : 
     public Camera(Point pos_camera, Integer id_plongeur_assos) {
         this.pos_camera = pos_camera;
@@ -48,10 +49,10 @@ public class Camera {
         this.id_plongeur_assos = id_plongeur_assos;
     }
 
-    // Méthodes d'instance : 
+    // Methodes d'instance : 
 
     /**
-     * Mets à jour la description d'une Camera
+     * Mets a jour la description d'une Camera
      */
     public void updateCamera(){
         for (Case c : Lagune.getGrille()) {
@@ -72,15 +73,15 @@ public class Camera {
     }
 
     /**
-     * Recupère la description des poissons perçus par la Camera
-     * @return la description des poissons perçus par la Camera
+     * Recupere la description des poissons percus par la Camera
+     * @return la description des poissons percus par la Camera
      */
     public ArrayList<String> getDescription_poissons() {
         return description_poissons;
     }
 
     /**
-     * Récupère la position de la Camera
+     * Recupere la position de la Camera
      * @return la position de la Camera
      */
     public Point getPos_camera() {
@@ -88,7 +89,7 @@ public class Camera {
     }
 
     /**
-     * Transforme la description de la chasse perçue par la Camera
+     * Transforme la description de la chasse percue par la Camera
      * @param description_chasse la nouvelle description de la chasse perçue par la Camera
      */
     public void setDescription_chasse(ArrayList<String> description_chasse) {
@@ -96,16 +97,18 @@ public class Camera {
     }
 
     /**
-     * Récupère la description de la chasse perçue par la Camera
-     * @return la description de la chasse perçue par la Camera
+     * Recupere la description de la chasse percue par la Camera
+     * @return la description de la chasse percue par la Camera
      */
     public ArrayList<String> getDescription_chasse() {
         return description_chasse;
     }
 
+    
+
     /**
-     * Récupère l'id du plongeur à qui appartient la Camera
-     * @return l'id du plongeur à qui appartient la Camera
+     * Recupere l'id du plongeur a qui appartient la Camera
+     * @return l'id du plongeur a qui appartient la Camera
      */
     public Integer getId_plongeur_assos(){
         return id_plongeur_assos;
@@ -122,7 +125,7 @@ public class Camera {
     //Méthodes de classe :
 
     /**
-     * Récupère la liste de toutes les Camera
+     * Recupere la liste de toutes les Camera
      * @return la liste de toutes les Camera
      */
     public static ArrayList<Camera> getAll_camera(){
@@ -130,7 +133,7 @@ public class Camera {
     }
 
     /**
-     * Mets à jour toutes les descriptions de Chasse des Camera
+     * Mets a jour toutes les descriptions de Chasse des Camera
      */
     public static void updateChasseCamera(){ 
         for (Camera c : Camera.all_camera) {
@@ -181,6 +184,5 @@ public class Camera {
             }
         c.setDescription_chasse(res);
         }
-        
     }
 }

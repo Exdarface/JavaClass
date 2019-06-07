@@ -48,82 +48,82 @@ public abstract class Poissons {
         nbr_poissons++;
     }
 
-    // Méthodes d'instance :
+    // Methodes d'instances :
 
     /**
-     * Récupère le numéro du Poissons pointé
-     * @return numéro du Poissons pointé
+     * Recupere le numro du Poissons pointe
+     * @return numero du Poissons pointe
      */
     public Integer getNumero_poisson() {
         return numero_poisson;
     }
 
     /**
-     * Récupère le nom du Poissons pointé
-     * @return nom du Poissons pointé
+     * Recupere le nom du Poissons pointe
+     * @return nom du Poissons pointe
      */
     public String getNom_poisson() {
         return nom_poisson;
     }
 
     /**
-     * Transforme le nom de Poissons pointé
-     * @param nom_poisson nouveau nom du Poissons pointé
+     * Transforme le nom de Poissons pointe
+     * @param nom_poisson nouveau nom du Poissons pointe
      */
     public void setNom_poisson(String nom_poisson){
         this.nom_poisson = nom_poisson;
     }
 
     /**
-     * Transforme le poids du Poissons pointé
-     * @param poids_poisson nouveau poids du Poissons pointé
+     * Transforme le poids du Poissons pointe
+     * @param poids_poisson nouveau poids du Poissons pointe
      */
     public void setPoids_poisson(double poids_poisson) {
         this.poids_poisson = poids_poisson;
     }
 
     /**
-     * Récupère le poids du Poissons pointé
-     * @return le poids du Poissons pointé
+     * Recupere le poids du Poissons pointe
+     * @return le poids du Poissons pointe
      */
     public double getPoids_poisson() {
         return poids_poisson;
     }
 
     /**
-     * Transforme l'âge du Poissons pointé
-     * @param age_poisson l'âge du Poissons pointé
+     * Transforme l'age du Poissons pointe
+     * @param age_poisson l'age du Poissons pointe
      */
     public void setAge_poisson(Integer age_poisson) {
         this.age_poisson = age_poisson;
     }
 
     /**
-     * Récupère l'âge du Poissons pointé
-     * @return l'âge du Poissons pointé
+     * Recupere l'age du Poissons pointe
+     * @return l'age du Poissons pointe
      */
     public Integer getAge_poisson() {
         return age_poisson;
     }
 
     /**
-     * Transforme la position du Poissons pointé
-     * @param position_poisson nouvelle la position du Poissons pointé
+     * Transforme la position du Poissons pointe
+     * @param position_poisson nouvelle la position du Poissons pointe
      */
     public void setPosition_poisson(Point position_poisson) {
         this.position_poisson = position_poisson;
     }
 
     /**
-     * Récupère la position du Poissons pointé
-     * @return la position du Poissons pointé
+     * Recupere la position du Poissons pointe
+     * @return la position du Poissons pointe
      */
     public Point getPosition_poisson() {
         return position_poisson;
     }
 
     /**
-     * Déplace le Poissons pointé dans une Case adjacente à la Case d'origine
+     * Deplace le Poissons pointe dans une Case adjacente a la Case d'origine
      */
     public int se_deplace(){
         int[] new_pos = Lagune.getRn().move((int) this.getPosition_poisson().getX(),(int) this.getPosition_poisson().getY() , Lagune.N);
@@ -134,7 +134,7 @@ public abstract class Poissons {
         return 0;
     }
     /**
-     * Donne toutes les informations du Poisson pointé
+     * Donne toutes les informations du Poisson pointe
      */
     public String toString(){
         return this.numero_poisson+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
@@ -143,32 +143,32 @@ public abstract class Poissons {
 
     // Methodes de Classe :
     /**
-     * R�cup�re le nombre de Poissons cr��s
-     * @return le nombre de Poissons cr��s
+     * Recupere le nombre de Poissons cree
+     * @return le nombre de Poissons cree
      */
     public static int getNbr_poissons() {
         return nbr_poissons;
     }
     
     /**
-     *Transforme l'unit� de temps locale des Poissons
-     * @param unite_temps nouvelle unit� de temps locale
+     *Transforme l'unite de temps locale des Poissons
+     * @param unite_temps nouvelle unite de temps locale
      */
     public static void setUnite_temps(Integer unite_temps) {
         Poissons.unite_temps = unite_temps;
     }
 
     /**
-     * R�cup�re l'unit� de temps locale des Poissons
-     * @return l'unit� de temps locale des Poissons
+     * Recupere l'unite de temps locale des Poissons
+     * @return l'unite de temps locale des Poissons
      */
     public static Integer getUnite_temps() {
         return unite_temps;
     }
-    // Méthodes implémentées :
+    // Methodes implementees :
 
     /**
-     * Augmente l'âge de chaque Poisson de 1
+     * Augmente l'age de chaque Poisson de 1
      */
     public void ticktock() {
         for (Case c : Lagune.getGrille()) {

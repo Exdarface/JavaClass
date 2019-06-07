@@ -27,6 +27,9 @@ public class Simulation {
         while (!Fakarava.end){
             Fakarava.clockForward();
             time++;
+            if(time ==7){
+                Fakarava.deleteDiver(enzo);
+            }
             //if (verbose)
                 //System.out.println(Arrays.toString(Fakarava.spyReport())+"\n\n");
         }

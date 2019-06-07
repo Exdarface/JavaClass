@@ -88,11 +88,11 @@ public class Fakarava {
     public static int createFishway(int x, int y){
         if(y == 0 || y == Lagune.getN()-1){
             Case.getCasec(new Point(x,y)).setIs_passe(true);
-            System.out.println("Passe crï¿½ï¿½");
+            System.out.println("Passe cree");
         }
         else if((y > 0 && y<Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)){
             Case.getCasec(new Point(x,y)).setIs_passe(true);
-            System.out.println("Passe crï¿½ï¿½");
+            System.out.println("Passe cree");
         }
         return x*Lagune.getN()+y;
     }
@@ -113,36 +113,66 @@ public class Fakarava {
      * @param diver plongeur associÃ©
      */
     public static void deleteDiver(int diver){
-        for (Camera c : Camera.getAll_camera()) {
-            if(c.getId_plongeur_assos() == diver){
-                Camera.getAll_camera().remove(c);
-            }
+        for(int i = 0;i< Camera.getAll_camera().size();i++){
+            if(Camera.getAll_camera().get(i).getId_plongeur_assos() == diver)
+                Camera.getAll_camera().remove(Camera.getAll_camera().get(i));
         }
-        for(Emetteur e : Emetteur.getAll_emetteur()){
-            if(e.getId_plongeur_assos() == diver){
-                Emetteur.getAll_emetteur().remove(e);
-            }
+        for(int i = 0;i<Emetteur.getAll_emetteur().size();i++){
+            if(Emetteur.getAll_emetteur().get(i).getId_plongeur_assos() == diver)
+                Emetteur.getAll_emetteur().remove(Emetteur.getAll_emetteur().get(i));
+        }
+        for(int i = 0; i < Plongeurs.getList_plong().size();i++){
+            if(Plongeurs.getList_plong().get(i).getId_plongeur() == diver)
+                Plongeurs.getList_plong().remove(Plongeurs.getList_plong().get(i));
         }
     }
 
     public static void putCamera(int diver, int fishway){
-        new Camera(new Point(fishway/Lagune.getN(),fishway%Lagune.getN()),diver);
-    }
-
-    public static void putTransmitters(int diver, int fishway){
-        for (Case c : Lagune.getGrille()) {
-            if(Case.getCase(new Point(c.getX(),c.getY())) == fishway){
-                for (Poissons p : c.getContenu()) {
-                    if(p.getClass() == Predateurs.class){
-                        new Emetteur(((Predateurs)p), diver);
-                    }
+        for(Plongeurs p : Plongeurs.getList_plong()){
+            if(p.getId_plongeur() == diver){
+                if((p.getNb_action() == 1 && p.getToDoList().isEmpty())
+                   ||(p.getNb_action() == 1 && (!p.getToDoList().isEmpty()) && p.getToDoList().get(0) == "Poser une Camera : "+
+                                                                        new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString())){
+                    new Camera(new Point(fishway/Lagune.getN(),fishway%Lagune.getN()),diver);
+                    System.out.println("Camera placee");
+                    if(p.getNb_action() == 1 && (!p.getToDoList().isEmpty()) && p.getToDoList().get(0) == "Poser une Camera : "+
+                                                                        new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString())
+                        p.getToDoList().remove(0);
+                }
+                else{
+                    p.getToDoList().add("Poser une Camera" + new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString());
                 }
             }
         }
+    }
 
+    public static void putTransmitters(int diver, int fishway){
+        for(Plongeurs p : Plongeurs.getList_plong()){
+            if(p.getId_plongeur() == diver){
+                if((p.getNb_action() == 1 && p.getToDoList().isEmpty())
+               ||(p.getNb_action() == 1 && (!p.getToDoList().isEmpty()) && p.getToDoList().get(0) =="Poser des Emetteurs"+ new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString())){
+                    for (Case c : Lagune.getGrille()) {
+                        if(Case.getCase(new Point(c.getX(),c.getY())) == fishway){
+                            for (Poissons po : c.getContenu()) {
+                                if(po.getClass() == Predateurs.class){
+                                    new Emetteur(((Predateurs)po), diver);
+                                }
+                            }
+                        }
+                    }
+                    System.out.println("Emetteur poses");
+                    p.setNb_action(0);
+                    if(p.getNb_action() == 1 && p.getToDoList().get(0) =="Poser des Emetteurs"+ new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString())
+                        p.getToDoList().remove(0);
+                }
+                else{
+                    p.getToDoList().add("Poser des Emetteurs"+ new Point(fishway/Lagune.getN(),fishway%Lagune.getN()).toString());
+                }
+            }
+        }
     }
     /**
-     * augmente les pendules chronobiologiques des Poissons
+     * augmente les pendules chronobiologiques des Poissons et des Plongeurs
      */
     public static void clockForward(){
         Poissons.setUnite_temps(Poissons.getUnite_temps()+1);
@@ -170,14 +200,18 @@ public class Fakarava {
         }
         else{
             Fakarava.isDay = true;
+            for(Plongeurs p : Plongeurs.getList_plong()){
+                p.setNb_action(1);
+            }
         }
         Predateurs.chasse();
-        //ItÃ©ration 1 : Trop de Poissons dans la Lagune
+        Camera.updateChasseCamera();
+        //Iteration 1 : Trop de Poissons dans la Lagune
         if(Lagune.getMAX_DENSITY() < Poissons.getNbr_poissons()){
-            System.out.println("Il y a trop de poissons dans la Lagune, le programme s'arrï¿½te.");
+            System.out.println("Il y a trop de poissons dans la Lagune, le programme s'arrete.");
             Fakarava.end = true;
         }
-        //ItÃ©ration 2 : Plus de Proies dans la Lagune
+        //Iteration 2 : Plus de Proies dans la Lagune
         ArrayList<Proies> list_prey = new ArrayList<Proies>();
         for (Case c : Lagune.getGrille()) {
             for (Poissons p : c.getContenu()) {
@@ -186,13 +220,23 @@ public class Fakarava {
                 }
             }
         }
+        
         System.out.println("Nombres de proies restantes :"+list_prey.size());
         if(list_prey.size() == 0){
             System.out.println("Il n'y as plus de Proies dans la Lagune, le programme s'arrï¿½te.");
             Fakarava.end = true;
         }
+        //Iteration 3 : Il n'y as plus de Plongeurs
+        if(Plongeurs.getList_plong().size() == 0){
+            System.out.println("Il n'y as plus de plongeurs, le programme s'arrete.");
+            Fakarava.end = true;
+        }
     }
 
+    /**
+     * Permet de voir l'évolution de la simulation
+     * @return l'évolution de la simulation
+     */
     public static String[] spyReport(){
         int length = 0;
         for(Case c : Lagune.getGrille()){

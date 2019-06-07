@@ -37,23 +37,23 @@ public abstract class Lagune {
     //Méthodes de classe : 
 
     /**
-     * Change la densité Maximale de la Lagune
-     * @param MAX_DENSITY nouvelle densitée Maximale
+     * Change la densite Maximale de la Lagune
+     * @param MAX_DENSITY nouvelle densite Maximale
      */
     public static void setMAX_DENSITY(Integer MAX_DENSITY){
         Lagune.MAX_DENSITY = MAX_DENSITY;
     }
 
     /**
-     * Récupère la densité Maximale de la Lagune
-     * @return densitée Maximale de la Lagune
+     * Récupère la densite Maximale de la Lagune
+     * @return densite Maximale de la Lagune
      */
     public static Integer getMAX_DENSITY(){
         return MAX_DENSITY;
     }
 
     /**
-     * Créé un tableau de Case construisant notre Lagune
+     * Cree un tableau de Case construisant notre Lagune
      */
     public static void creer_grille() {
         Lagune.grille = new ArrayList<Case>();
@@ -65,7 +65,7 @@ public abstract class Lagune {
     }
 
     /**
-     * Change la longueur de coté de la grille
+     * Change la longueur de cote de la grille
      * @param N longueur de la grille
      */
     public static void setN(Integer N) {
@@ -73,8 +73,8 @@ public abstract class Lagune {
     }
 
     /**
-     * Récupère la longueur de coté de la grille
-     * @return la longueur de coté de la grille
+     * Recupere la longueur de cote de la grille
+     * @return la longueur de cote de la grille
      */
     public static Integer getN() {
         return N;
@@ -89,24 +89,41 @@ public abstract class Lagune {
     }
 
     /**
-     * Récupère la force du courant Maximale de la Lagune
+     * Recupere la force du courant Maximale de la Lagune
      * @return force du courant Maximale de la Lagune
      */
     public static Integer getMAX_CURRENT_STRENGTH() {
         return MAX_CURRENT_STRENGTH;
     }
 
+    /**
+     * Recupere le nombre de passe de la Lagune
+     * @return le nombre de passe de la Lagune
+     */
     public static int getNb_passe(){
         return nb_passe;
     }
+    
+    /**
+     *Change le generateur aleatoire de la Lagune
+     * @param rn nouveau generateur aleatoire de la Lagune
+     */
     public static void setRn(Random rn) {
         Lagune.rn = rn;
     }
 
+    /**
+     * Recupere le generateur aleatoire de la Lagune
+     * @return le generateur aleatoire de la Lagune
+     */
     public static Random getRn() {
         return rn;
     }
 
+    /**
+     * Recupere la grille de la Lagune
+     * @return la grille de la Lagune
+     */
     public static ArrayList<Case> getGrille() {
         return grille;
     }
