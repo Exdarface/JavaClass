@@ -1,5 +1,7 @@
 package fakarava.ecosystem;
 
+import java.util.ArrayList;
+
 
 public class Proies extends Poissons{
     /**
@@ -37,11 +39,12 @@ public class Proies extends Poissons{
     }
 
     /**
-     * Donne toutes les informations de la Proie pointée
+     * Donne toutes les informations de la Proie pointee
+     * @returnles informations de la Proie pointee
      */
     @Override
     public String toString() {
-        return this.getNumero_poisson()+":"+this.getClass().toString()+","+this.getNom_poisson()+","+
+        return this.getNumero_poisson()+":"+"Proies"+","+this.getNom_poisson()+","+
             this.getAge_poisson()+","+this.getPoids_poisson()+","+this.getPosition_poisson();
     }
 
@@ -51,20 +54,25 @@ public class Proies extends Poissons{
      * Reproduit toutes les Proies de la Lagune et les ajoute au contenu de la Case
      */
     public static void se_reproduitprey() {
-
         if(unite_temps%PREY_CLONE_TIME == 0){
             for (Case c : Lagune.getGrille()) {
                 if(c.getContenu().size() != 0){
+                    ArrayList<Proies> added = new ArrayList<Proies>();
                     for(int i = 0;i<c.getContenu().size();i++) {
                         if(c.getContenu().get(i).getClass() == Proies.class){
-                            c.getContenu().add(new Proies(c.getContenu().get(i).getNom_poisson(),
+                            added.add(new Proies(c.getContenu().get(i).getNom_poisson(),
                                                           c.getContenu().get(i).getPoids_poisson(),
                                                           c.getContenu().get(i).getPosition_poisson(),
                                                           ((Proies)c.getContenu().get(i)).getVivacite_proie()));
                         }
                     }
+                    while(added.size() !=0){
+                        c.getContenu().add(added.get(0));
+                        added.remove(0);
+                    }
                 }
             }
+            System.out.println("Les Proies se sont reproduits.");
         }
     }
 

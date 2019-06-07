@@ -9,9 +9,9 @@ import fakarava.ecosystem.Point;
 import fakarava.ecosystem.Poissons;
 import fakarava.ecosystem.Predateurs;
 import fakarava.ecosystem.Proies;
+import fakarava.ecosystem.Random;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Fakarava {
     // Champs :
@@ -38,6 +38,8 @@ public class Fakarava {
         Predateurs.setPREDATOR_CLONE_TIME(predatorCloneTime);
         Proies.setPREY_CLONE_TIME(preyCloneTime);
         Lagune.creer_grille();
+        if(seed != null)
+            Random.mySeed = seed;
         Lagune.setRn(fakarava.ecosystem.Random.getARandom());
         Fakarava.end = false;
         
@@ -84,17 +86,13 @@ public class Fakarava {
      * @return La position absolue dans la grille de la Lagune
      */
     public static int createFishway(int x, int y){
-        if ((y > 0 && y < Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)) {
-            for (Case c : Lagune.getGrille()) {
-                if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                Lagune.getGrille().get(x*Lagune.getN()+y).setIs_passe(true);
-            }
+        if(y == 0 || y == Lagune.getN()-1){
+            Case.getCasec(new Point(x,y)).setIs_passe(true);
+            System.out.println("Passe cr��");
         }
-        if(y == 0 || y == Lagune.getN()){
-            for (Case c : Lagune.getGrille()) {
-                if(Case.getCase(new Point(c.getX(),c.getY())) == x*Lagune.getN()+y)
-                Lagune.getGrille().get(x*Lagune.getN()+y).setIs_passe(true);
-            }
+        else if((y > 0 && y<Lagune.getN()-1) && (x == 0 || x == Lagune.getN()-1)){
+            Case.getCasec(new Point(x,y)).setIs_passe(true);
+            System.out.println("Passe cr��");
         }
         return x*Lagune.getN()+y;
     }
@@ -168,13 +166,15 @@ public class Fakarava {
         }
         if(Fakarava.isDay == true){
             Fakarava.isDay = false;
-            Predateurs.chasse();
+            
         }
         else{
             Fakarava.isDay = true;
         }
-        //Itération 1 : Trop de Poissons dans la LaguneS
+        Predateurs.chasse();
+        //Itération 1 : Trop de Poissons dans la Lagune
         if(Lagune.getMAX_DENSITY() < Poissons.getNbr_poissons()){
+            System.out.println("Il y a trop de poissons dans la Lagune, le programme s'arr�te.");
             Fakarava.end = true;
         }
         //Itération 2 : Plus de Proies dans la Lagune
@@ -186,18 +186,26 @@ public class Fakarava {
                 }
             }
         }
+        System.out.println("Nombres de proies restantes :"+list_prey.size());
         if(list_prey.size() == 0){
+            System.out.println("Il n'y as plus de Proies dans la Lagune, le programme s'arr�te.");
             Fakarava.end = true;
         }
     }
 
     public static String[] spyReport(){
-        ArrayList<String> res = new ArrayList<String>();
+        int length = 0;
         for(Case c : Lagune.getGrille()){
-            for(int i =0;i<c.getContenu().size();i++){
-                res.add(c.getContenu().get(i).toString());
+            length = c.getContenu().size();
+        }
+        String[] res = new String[length];
+        int i = 0;
+        for(Case c : Lagune.getGrille()){
+            for(Poissons p : c.getContenu()){
+                res[i] = p.toString();
+                i++;
             }
         }
-        return Arrays.copyOf(res.toArray(new String[0]),res.size());
+        return res;
     }
 }

@@ -128,18 +128,14 @@ public abstract class Poissons {
     public int se_deplace(){
         int[] new_pos = Lagune.getRn().move((int) this.getPosition_poisson().getX(),(int) this.getPosition_poisson().getY() , Lagune.N);
         if(new_pos[0] < Lagune.N && new_pos[1] < Lagune.N){
-            //Case.getCasec(this.getPosition_poisson()).getContenu().remove(this);
             this.setPosition_poisson(new Point(new_pos[0],new_pos[1]));
-            //Case.getCasec(new Point(new_pos[0],new_pos[1])).getContenu().add(this);
             return 1;
         }
         return 0;
     }
-
     /**
      * Donne toutes les informations du Poisson pointé
      */
-    @Override
     public String toString(){
         return this.numero_poisson+","+this.nom_poisson+","+Double.toString(this.poids_poisson)+","+
         this.age_poisson+","+this.position_poisson.toString()+"\n";
@@ -169,7 +165,6 @@ public abstract class Poissons {
     public static Integer getUnite_temps() {
         return unite_temps;
     }
-
     // Méthodes implémentées :
 
     /**

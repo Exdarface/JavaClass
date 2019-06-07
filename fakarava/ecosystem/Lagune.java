@@ -32,6 +32,8 @@ public abstract class Lagune {
      */
     protected static Random rn;
 
+
+
     //Méthodes de classe : 
 
     /**
@@ -94,6 +96,9 @@ public abstract class Lagune {
         return MAX_CURRENT_STRENGTH;
     }
 
+    public static int getNb_passe(){
+        return nb_passe;
+    }
     public static void setRn(Random rn) {
         Lagune.rn = rn;
     }

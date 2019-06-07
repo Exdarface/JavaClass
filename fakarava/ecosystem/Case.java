@@ -123,11 +123,6 @@ public class Case extends Lagune {
         return res.intValue();
     }
     
-    /**
-     * Renvoie la Case associée aux coordonnées dans la grille de la Lagune
-     * @param p coordonnées de la Case voulue
-     * @return Case voulue
-     */
     public static Case getCasec(Point p){
         int pos = Case.getCase(p);
         return Lagune.getGrille().get(pos);
