@@ -1,7 +1,7 @@
 package fakarava.ecosystem;
 
 
-public abstract class Poissons {
+public abstract class Poissons implements Clock{
     /**
      * @attribute
      */
@@ -94,7 +94,7 @@ public abstract class Poissons {
      * Transforme l'age du Poissons pointe
      * @param age_poisson l'age du Poissons pointe
      */
-    public void setAge_poisson(Integer age_poisson) {
+    public void setAge_poisson(int age_poisson) {
         this.age_poisson = age_poisson;
     }
 
@@ -102,7 +102,7 @@ public abstract class Poissons {
      * Recupere l'age du Poissons pointe
      * @return l'age du Poissons pointe
      */
-    public Integer getAge_poisson() {
+    public int getAge_poisson() {
         return age_poisson;
     }
 
@@ -168,14 +168,10 @@ public abstract class Poissons {
     // Methodes implementees :
 
     /**
-     * Augmente l'age de chaque Poisson de 1
+     * Augmente l'age du Poisson pointee de 1
      */
+    @Override
     public void ticktock() {
-        for (Case c : Lagune.getGrille()) {
-            for (Poissons p : c.getContenu()) {
-                p.age_poisson++;
-            }
-        }
-        
+        this.setAge_poisson(this.getAge_poisson()+1); 
     }
 }
